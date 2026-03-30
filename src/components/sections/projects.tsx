@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useState, useMemo, useCallback } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '@/data/projects';
 import { FilterTabs } from '@/components/ui/filter-tabs';
@@ -14,18 +14,19 @@ const FILTER_TAGS = ['Next.js', 'NestJS', 'Fastify', 'Laravel', 'React', 'TypeSc
 
 export function Projects() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const activeFilter = searchParams.get('tag') || 'all';
+  const [activeFilter, setActiveFilter] = useState(searchParams.get('tag') || 'all');
 
-  const setFilter = (value: string) => {
+  const setFilter = useCallback((value: string) => {
+    setActiveFilter(value);
     const params = new URLSearchParams(searchParams.toString());
     if (value === 'all') {
       params.delete('tag');
     } else {
       params.set('tag', value);
     }
-    router.replace(`?${params.toString()}`, { scroll: false });
-  };
+    const qs = params.toString();
+    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  }, [searchParams]);
 
   // Build filter options from actual project tech stacks
   const filterOptions = useMemo(() => {
