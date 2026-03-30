@@ -1,0 +1,25 @@
+<svg width="720" height="1280" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="1280" fill="#0A0E1A"/>
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="1280" fill="url(#grid)"/>
+  <!-- Radial glow -->
+  <circle cx="360" cy="500" r="300" fill="rgba(0,217,255,0.06)"/>
+  <!-- Phone frame outline -->
+  <rect x="60" y="40" width="600" height="1200" rx="40" fill="none" stroke="rgba(0,217,255,0.15)" stroke-width="2"/>
+  <!-- Play button circle -->
+  <circle cx="360" cy="580" r="48" fill="#00D9FF" opacity="0.9"/>
+  <polygon points="348,558 348,602 382,580" fill="#0A0E1A"/>
+  <!-- Text -->
+  <text x="360" y="680" fill="#E2E8F0" font-family="monospace" font-size="24" text-anchor="middle" font-weight="600">Video Introduction</text>
+  <text x="360" y="720" fill="#94A3B8" font-family="monospace" font-size="16" text-anchor="middle">45 seconds · Portrait</text>
+  <text x="360" y="780" fill="#475569" font-family="monospace" font-size="14" text-anchor="middle">Replace with your recorded video</text>
+  <!-- Name tag -->
+  <rect x="210" y="1100" width="300" height="60" rx="8" fill="#0F1524" stroke="rgba(0,217,255,0.2)" stroke-width="1"/>
+  <text x="360" y="1128" fill="#00D9FF" font-family="monospace" font-size="16" text-anchor="middle" font-weight="600">Jerome</text>
+  <text x="360" y="1148" fill="#94A3B8" font-family="monospace" font-size="11" text-anchor="middle">Senior Full Stack Developer</text>
+</svg>

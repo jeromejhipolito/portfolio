@@ -1,0 +1,26 @@
+{
+  "name": "Jerome Hipolito",
+  "title": "Senior Full Stack Developer",
+  "tagline": "I build systems that scale, break gracefully, and ship fully tested.",
+  "subtitle": "Senior Full Stack Developer (Tech Lead) · Philippines · Open to Remote Roles",
+  "availability": "Open to full-stack roles · Commission-based welcome · Can start immediately",
+  "location": "Central Luzon / Bulacan, Philippines",
+  "contactEmail": "",
+  "resumeFile": "/Jerome-Resume.pdf",
+  "resumeDate": "March 2026",
+  "metaTitle": "Jerome Hipolito — Senior Full Stack Developer, Philippines | Laravel · Next.js · React",
+  "metaDescription": "Senior Full Stack Developer with 4+ years of experience specializing in Laravel, Next.js, and microservices architecture. AI-assisted development workflow with 500+ automated tests. Open to remote roles.",
+  "ogImage": "/og-image.svg",
+  "proofMetrics": [
+    { "value": "4+", "label": "Years Experience" },
+    { "value": "500+", "label": "Automated Tests" },
+    { "value": "20+", "label": "Devs Mentored" },
+    { "value": "15+", "label": "Tech Interviews" },
+    { "value": "A+", "label": "Security Headers" },
+    { "value": "90+", "label": "Lighthouse Score" }
+  ],
+  "socialLinks": [
+    { "platform": "github", "url": "https://github.com/jeromejhipolito", "label": "GitHub" },
+    { "platform": "linkedin", "url": "https://www.linkedin.com/in/jeromehipolito", "label": "LinkedIn" }
+  ]
+}

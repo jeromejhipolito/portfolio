@@ -1,0 +1,68 @@
+[
+  {
+    "slug": "bookeasy-booking-system",
+    "name": "BookIt — Booking System",
+    "problem": "Booking platforms break under concurrent reservations — double-bookings, failed payments without rollback, and silent notification failures erode user trust.",
+    "solution": "A full-stack booking system with CQRS architecture that separates commands (CreateBooking, CancelBooking, RescheduleBooking) from queries, with real-time availability updates via WebSocket.",
+    "impact": "CQRS with dedicated Command and Query handlers. Event-driven domain logic via EventBus. Real-time availability sync through Socket.IO gateway. 9 backend modules with shared type-safe packages.",
+    "framework": "nestjs",
+    "techStack": ["NestJS 10", "Next.js 14", "TypeORM", "PostgreSQL", "Redis", "Socket.IO", "TypeScript 5", "Turborepo", "pnpm", "Zustand", "TanStack Query", "Tailwind CSS"],
+    "githubUrl": "https://github.com/jeromejhipolito/booking-system-v2",
+    "demoUrl": "https://booking-system-web-opal.vercel.app/",
+    "screenshot": "/projects/bookeasy-homepage.png",
+    "outcomeMetric": "CQRS architecture · 9 backend modules · Real-time WebSocket · Monorepo with 4 shared packages",
+    "featured": true,
+    "claudeAssisted": true,
+    "order": 1,
+    "demoNote": "This is a sample project built to showcase code quality and architecture patterns. It runs in demo mode with simulated data. I value time — building more samples so you can evaluate my work across different domains. Clone the repo to explore the full codebase.",
+    "gallery": [
+      { "src": "/projects/bookeasy-homepage.png", "alt": "BookIt homepage — search bar, category filters, and hero with demo mode banner" },
+      { "src": "/projects/bookeasy-browse.png", "alt": "Browse services — category filter tabs, service cards with ratings, pricing, and Book Now buttons" },
+      { "src": "/projects/bookeasy-service-detail.png", "alt": "Service detail — price, duration, availability, Book Now CTA, customer reviews with star ratings" },
+      { "src": "/projects/bookeasy-booking-flow.png", "alt": "Multi-step booking wizard — service selection with stepper (Service → Date & Time → Confirm)" },
+      { "src": "/projects/bookeasy-provider-dashboard.png", "alt": "Provider dashboard — stats cards (bookings, revenue, pending), upcoming bookings with status badges" }
+    ],
+    "codeDiff": "// CQRS Command Handler — CreateBooking\n@CommandHandler(CreateBookingCommand)\nexport class CreateBookingHandler {\n  constructor(\n    private bookingRepo: BookingRepository,\n    private eventBus: EventBus,\n  ) {}\n\n  async execute(command: CreateBookingCommand) {\n    const booking = await this.bookingRepo.create(command.dto);\n    this.eventBus.publish(new BookingCreatedEvent(booking));\n    return booking;\n  }\n}"
+  },
+  {
+    "slug": "flowboard-task-management",
+    "name": "FlowBoard — Real-Time Collaborative Kanban",
+    "problem": "Remote teams need real-time task visibility without page refreshes. Existing tools either lack real-time sync or require expensive per-seat licenses.",
+    "solution": "A Kanban board with real-time WebSocket collaboration via Socket.IO + Redis pub-sub, fractional indexing for conflict-free drag-and-drop, 4-tier RBAC, AI-powered task parsing, and background job processing with Bull queue.",
+    "impact": "12+ NestJS modules forming a modular monolith. Real-time sync via Socket.IO with Redis adapter for multi-instance. AI task parsing via Claude API. Bull queue for email digests, audit logging, and overdue checks.",
+    "framework": "nestjs",
+    "techStack": ["NestJS 10", "Next.js 15", "React 19", "Prisma 6", "PostgreSQL 16", "Redis 7", "Socket.IO", "Bull Queue", "Tailwind CSS v4", "Zustand", "TanStack Query", "dnd-kit", "Recharts", "Claude API"],
+    "githubUrl": "https://github.com/jeromejhipolito/flowboard",
+    "demoUrl": "https://flowboard-web-ten.vercel.app/",
+    "screenshot": "/projects/flowboard-board.png",
+    "outcomeMetric": "12+ backend modules · Real-time WebSocket + Redis pub-sub · AI task parsing · Fractional indexing",
+    "featured": true,
+    "claudeAssisted": true,
+    "order": 2,
+    "demoNote": "This is a sample project built to showcase code quality and architecture patterns. It runs in demo mode with simulated data. I value time — building more samples so you can evaluate my work across different domains. Clone the repo to explore the full codebase.",
+    "gallery": [
+      { "src": "/projects/flowboard-board.png", "alt": "Kanban board — 5 columns (Backlog, To Do, In Progress, In Review, Done) with drag-and-drop task cards, labels, priorities, and assignees" },
+      { "src": "/projects/flowboard-analytics.png", "alt": "Project analytics — task distribution donut chart, priority breakdown, team workload bar chart, velocity trends" },
+      { "src": "/projects/flowboard-members.png", "alt": "Team RBAC — member management with roles (Owner, Admin, Member), invite system, and role assignment dropdowns" },
+      { "src": "/projects/flowboard-login.png", "alt": "Workspace dashboard — workspace cards with RBAC roles, project count, and Create Workspace action" },
+      { "src": "/projects/flowboard-landing.png", "alt": "FlowBoard landing — real-time collaboration tagline with Get Started and Sign In CTAs" }
+    ],
+    "codeDiff": "// Event-driven domain logic — decouple side effects\n@OnEvent('task.moved')\nasync handleTaskMoved(event: TaskMovedEvent) {\n  // Notify all workspace members via WebSocket\n  this.gateway.broadcastToWorkspace(event.workspaceId, {\n    type: 'task:moved',\n    payload: event,\n  });\n  // Audit log in background queue\n  await this.auditQueue.add('log', {\n    action: 'task.moved',\n    ...event,\n  });\n}"
+  },
+  {
+    "slug": "money-management-app",
+    "name": "Money Management — Personal Finance App",
+    "problem": "Personal finance tools are either too simple (spreadsheets) or too complex (enterprise accounting). No middle ground for individuals who want multi-account tracking with visual insights.",
+    "solution": "A comprehensive personal finance dashboard with multi-account management across 8 categories (wallet, debt, credit, insurance, investments, savings, scheduled, subscription), transaction categorization, drag-and-drop organization, and exportable PDF/Excel reports.",
+    "impact": "Unified financial view across 8 categories with real-time charts. PDF and Excel export for tax season. Full auth flow with profile setup. Drag-and-drop for account and category management.",
+    "framework": "nextjs",
+    "techStack": ["Next.js 16", "React 19", "TypeScript 5", "Tailwind CSS 4", "Zustand 5", "Recharts", "Radix UI", "React Hook Form", "Zod", "dnd-kit", "jsPDF", "XLSX", "date-fns", "Lucide Icons"],
+    "githubUrl": "https://github.com/jeromejhipolito/money-management",
+    "screenshot": "/projects/money-management.svg",
+    "outcomeMetric": "8 financial categories · PDF/Excel export · Drag-and-drop UI · Full auth flow",
+    "featured": false,
+    "claudeAssisted": true,
+    "order": 3,
+    "demoNote": "Sample project showcasing frontend architecture. I value time — building more samples so you can evaluate my work. Clone the repo to explore the full codebase."
+  }
+]

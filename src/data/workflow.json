@@ -1,0 +1,38 @@
+[
+  {
+    "number": 1,
+    "title": "Precision Planning — Not Just Prompting",
+    "shortTitle": "PLAN",
+    "description": "I created Smart Workflows — my own agentic workflow plugin for Claude Code — that doesn't just generate a plan. It simulates a full company meeting with 25 expert perspectives (CTO, security engineer, UX designer, legal counsel, QA lead, and more). Every plan includes business requirements, wireframe designs, testable acceptance criteria, and even legal compliance checks. This isn't AI guessing what to build — it's AI systematically eliminating blind spots from every angle before a single line of code is written.",
+    "tools": ["Claude Code", "Smart Workflows Plugin", "MCP Servers", "Playwright MCP"],
+    "output": "Detailed business requirements, screen wireframes, acceptance criteria, legal review, architecture decisions — all before any code",
+    "quote": "What normally takes a team of 5 people two weeks, I complete in under 2 hours. The plan is so detailed that execution becomes mechanical — that's the point."
+  },
+  {
+    "number": 2,
+    "title": "Step-by-Step Execution — Not Bulk Generation",
+    "shortTitle": "BUILD",
+    "description": "The biggest mistake developers make with AI is executing everything at once. Bulk generation causes hallucinations, context drift, and compounding errors — especially on large-scale projects. Smart Workflows (my plugin) enforces step-by-step execution: one phase at a time, verified before the next begins. Each phase has a test gate that must pass before proceeding. I've been using Claude for over a year and I've learned where it breaks — this workflow was built from those failures. I'm a developer who coded before AI existed. I know when the output is wrong because I understand the code. AI is my pair programmer, not my replacement.",
+    "tools": ["Claude Code", "Smart Workflows Plugin", "TypeScript", "Next.js", "NestJS", "Laravel", "Filament"],
+    "output": "Production code built phase-by-phase with verification gates — not bulk-generated and hoped for the best",
+    "quote": "I coded before AI existed. I know when the output is wrong because I understand every line. AI accelerates me — it doesn't replace my judgment."
+  },
+  {
+    "number": 3,
+    "title": "Testing Beyond What QA Teams Do",
+    "shortTitle": "QA",
+    "description": "Unit tests and integration tests are the baseline — my plugin goes further. It generates E2E test scenarios that cover edge cases most QA engineers wouldn't think to test, completing in hours what manual QA takes days. Some features produce 500+ test cases in a single pass, all documented with pass/fail results and enhancement recommendations. But I know AI testing alone isn't production-ready — it takes screenshots but doesn't see what happened before that screenshot. So I manually test everything after. The bugs you find at this stage are real user scenarios, mostly UI edge cases that only a human eye catches.",
+    "tools": ["Vitest", "Pest", "React Testing Library", "Playwright", "Smart Workflows Plugin"],
+    "output": "500+ automated test cases, unit + integration + E2E coverage, manual verification for real-user scenarios",
+    "quote": "500+ test cases in one pass. But I still manually test everything — because AI sees screenshots, not user journeys."
+  },
+  {
+    "number": 4,
+    "title": "Ship with Confidence",
+    "shortTitle": "SHIP",
+    "description": "After planning, building, and testing — the product ships with little to no bugs. Work that requires an entire team or even an entire company can be done by one person. A normal 2-week sprint can be completed in hours. But this workflow isn't perfect — I know that. It's far from perfect. But it's already efficient, and every problem I encounter becomes a fix in the plugin so it never happens again. That's the real advantage: the workflow improves with every project. For legacy codebases not built by AI, I've also solved the context problem — AI understands the existing code before suggesting changes, never touching production data recklessly.",
+    "tools": ["GitHub Actions", "Vercel", "Lighthouse CI", "Playwright", "UptimeRobot"],
+    "output": "Production deployment with CI/CD pipeline, monitoring, and a workflow that gets better with every project",
+    "quote": "Languages are irrelevant now. Creativity is the best skill you can have. Adopting AI now will be your advantage in the future."
+  }
+]

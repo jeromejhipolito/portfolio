@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env.local
+
+# Dev artifacts
+screenshots/
+public/generate-video.html
+public/Jerome-Resume-README.md
+.playwright-mcp/

@@ -1,0 +1,91 @@
+[
+  {
+    "company": "Betrnk Tours",
+    "companyContext": "Tourism & entertainment technology company — BGC, Taguig City",
+    "role": "Senior Full Stack Developer (Tech Lead)",
+    "startDate": "Feb 2024",
+    "responsibilities": [
+      "Developed full-stack applications using Laravel/Filament for backend and Next.js for frontend, enhancing system scalability and reliability",
+      "Designed and maintained relational database systems, improving data management and application performance",
+      "Implemented multi-tenant architectures with microservices using HTTP APIs and RabbitMQ, employing Saga pattern for distributed transactions",
+      "Introduced feature flag strategies and idempotency techniques, ensuring consistent and reliable operations",
+      "Created unit tests with Pest and E2E tests with Playwright, boosting software quality assurance",
+      "Mentored and onboarded 20+ developers across multiple teams, fostering skill development and team integration",
+      "Managed projects end-to-end, overseeing repository management and enforcing version control best practices",
+      "Conducted 15+ technical interviews to streamline the recruitment process"
+    ],
+    "techStack": ["Laravel", "Filament", "Next.js", "PHP", "MySQL", "RabbitMQ", "Microservices", "Playwright", "Pest", "Docker", "LINE API"],
+    "outcomeMetric": "Tech Lead · 6 production systems · Mentored 20+ devs · 15+ interviews",
+    "projects": [
+      {
+        "name": "Marketing Tool (LINE Integration)",
+        "description": "Multi-tenant marketing platform integrated with LINE app — broadcasting, auto-reply, coupons, and referral system. Built with Filament admin panel.",
+        "techStack": ["Filament", "Laravel", "LINE API", "Multi-tenancy"]
+      },
+      {
+        "name": "Company Landing & Booking System",
+        "description": "Corporate website with integrated booking system and content management for tour packages",
+        "techStack": ["Next.js", "Filament", "Laravel", "MySQL"]
+      },
+      {
+        "name": "Casino Cage System",
+        "description": "Inventory management system for casino chips and money with real-time forex exchange rate integration",
+        "techStack": ["Next.js", "Laravel", "MySQL", "Forex API"]
+      },
+      {
+        "name": "E-Wallet System",
+        "description": "Backend API for mobile wallet — send/receive, deposit, withdrawal, currency exchange, and secure money hashing. Separate mobile app team consumed the API.",
+        "techStack": ["Laravel", "MySQL", "Payment Gateway", "REST API"]
+      },
+      {
+        "name": "Coupon & Ads Management System",
+        "description": "SaaS platform with multi-tenancy for coupon management, ad campaigns, scheduling, analytics, and subscription billing via microservices",
+        "techStack": ["Next.js", "Laravel", "RabbitMQ", "Microservices", "Saga Pattern", "Multi-tenancy"]
+      },
+      {
+        "name": "E2E Testing Suite",
+        "description": "Comprehensive test automation with Pest unit tests and Playwright E2E coverage across all systems",
+        "techStack": ["Playwright", "Pest", "PHP"]
+      }
+    ]
+  },
+  {
+    "company": "Halcyon Agile",
+    "companyContext": "Software consultancy — CMS, eCommerce, and SaaS platforms for enterprise clients",
+    "role": "Junior Full-Stack Developer",
+    "startDate": "Jun 2022",
+    "endDate": "Feb 2024",
+    "responsibilities": [
+      "Built a learning management system, 2 eCommerce platforms, and a multi-tenant SaaS platform using Node.js, Next.js, Laravel/Filament, and Tailwind CSS",
+      "Implemented Saga pattern with idempotency on an eCommerce platform using Kafka-based microservices across 5 services (inventory, CMS, user management, payment, wallet) with third-party product integration",
+      "Developed a SaaS platform combining content management, learning management, and eCommerce with multi-tenancy, subscription, and analytics",
+      "Implemented SCRUM Agile methodologies, achieving timely delivery and improving project timelines by 15%",
+      "Designed and maintained MySQL database structures for service-focused platforms",
+      "Managed version control and code tracking using Git across development teams"
+    ],
+    "techStack": ["Node.js", "Next.js", "Laravel", "Filament", "Tailwind CSS", "MySQL", "Kafka", "Microservices", "Saga Pattern", "Git"],
+    "outcomeMetric": "4 production systems · Kafka microservices (5 services) · Multi-tenant SaaS",
+    "projects": [
+      {
+        "name": "Microservices eCommerce Platform",
+        "description": "Kafka-based microservices with 5 services — inventory, CMS, user management, payment, wallet — with Saga pattern, idempotency, multi-tenancy, and third-party product integration",
+        "techStack": ["Node.js", "Next.js", "Tailwind CSS", "Kafka", "Microservices", "Multi-tenancy"]
+      },
+      {
+        "name": "Multi-Tenant SaaS Platform",
+        "description": "Integrated platform combining content management, learning management, and eCommerce with multi-tenancy, subscription billing, payment gateway, and analytics. Filament admin panel, Next.js client.",
+        "techStack": ["Filament", "Laravel", "Next.js", "Tailwind CSS", "Multi-tenancy", "Analytics"]
+      },
+      {
+        "name": "Learning Management System",
+        "description": "Educational platform with course management, progress tracking, and content delivery. Filament admin, Next.js client.",
+        "techStack": ["Filament", "Laravel", "Next.js", "Tailwind CSS", "MySQL"]
+      },
+      {
+        "name": "eCommerce Platform (Monolith)",
+        "description": "Full-featured online store with payment gateway integration, subscription management, and analytics. Monolith architecture.",
+        "techStack": ["Node.js", "Next.js", "Tailwind CSS", "MySQL", "Payment Gateway"]
+      }
+    ]
+  }
+]

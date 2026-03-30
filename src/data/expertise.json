@@ -1,0 +1,53 @@
+[
+  {
+    "title": "Microservices Architecture",
+    "plainDescription": "I break large applications into independent services that can be built, deployed, and scaled separately — so a problem in one part never brings down the whole system.",
+    "technicalDeepDive": "I design bounded contexts using Domain-Driven Design, with each service owning its data store and communicating through well-defined API contracts or async events. Services are independently deployable via Docker containers with health checks and graceful shutdown. Every service ships with structured JSON logging, correlation IDs for distributed tracing, and health check endpoints for monitoring — observability is built in from day one, not bolted on after an incident.",
+    "tradeoff": "Microservices add operational complexity — distributed tracing, service discovery, and network failure handling are mandatory, not optional. I only split a monolith when the team or domain boundaries justify it.",
+    "relatedProject": "bookeasy-booking-system",
+    "icon": "boxes"
+  },
+  {
+    "title": "Event Streaming (AMQP / Kafka)",
+    "plainDescription": "When services need to talk to each other, I use message queues that guarantee delivery even when something fails — orders keep processing, notifications keep sending, data stays consistent.",
+    "technicalDeepDive": "I implement event-driven architectures using RabbitMQ (AMQP) for task queues and command routing, and Kafka for high-throughput event streaming and log-based processing. Patterns include transactional outbox for exactly-once event publishing, dead-letter exchanges for failed message recovery, and consumer group rebalancing for horizontal scaling. I built and published laravel-amqp-toolkit — a Laravel package for AMQP message handling with automatic retry, dead letter queue, and failure management.",
+    "tradeoff": "Async messaging makes debugging harder — you trade request-response simplicity for resilience, which means investing in structured logging and distributed tracing from day one.",
+    "relatedProject": "bookeasy-booking-system",
+    "externalLink": { "url": "https://packagist.org/packages/jeromejhipolito/laravel-amqp-toolkit", "label": "laravel-amqp-toolkit on Packagist" },
+    "icon": "radio"
+  },
+  {
+    "title": "Saga Pattern",
+    "plainDescription": "When a business operation spans multiple services — like booking a slot, charging a card, and sending a confirmation — I coordinate them so that if any step fails, all previous steps roll back automatically.",
+    "technicalDeepDive": "I implement choreography-based Sagas where each service listens for domain events and either continues the chain or triggers compensating actions. Each step is idempotent, so retries are safe. The saga state is tracked via an event log, not a central orchestrator, which avoids a single point of failure. I built and published laravel-saga — a Laravel package for managing distributed transactions with automatic rollback support.",
+    "tradeoff": "Saga choreography requires careful failure mapping before writing code. Every step needs a defined compensating action, and the more steps in the chain, the more complex the rollback graph becomes.",
+    "relatedProject": "bookeasy-booking-system",
+    "externalLink": { "url": "https://packagist.org/packages/jeromejhipolito/laravel-saga", "label": "laravel-saga on Packagist" },
+    "icon": "git-branch"
+  },
+  {
+    "title": "Idempotency",
+    "plainDescription": "I build APIs where sending the same request twice never creates a duplicate — so retries are always safe, whether it's a payment, a booking, or a notification.",
+    "technicalDeepDive": "Every mutating API endpoint accepts an X-Idempotency-Key header. The key is stored alongside the response in a database table with a TTL. On duplicate request, the stored response is returned without re-executing the operation. For event consumers, I use message deduplication via a processed-events table checked before handler execution.",
+    "tradeoff": "Idempotency adds a database lookup to every write operation, which marginally increases latency. For any system handling payments or state mutations, this cost is negligible compared to the cost of a duplicate charge.",
+    "relatedProject": "bookeasy-booking-system",
+    "icon": "shield-check"
+  },
+  {
+    "title": "Custom Packages & Libraries",
+    "plainDescription": "I build reusable packages that solve common problems across projects — so I don't reinvent the wheel every time I start a new application.",
+    "technicalDeepDive": "I've published 7 Laravel packages on Packagist: laravel-api-versioning (120+ installs — header-based API versioning with feature flags), laravel-saga (distributed transactions with rollback), laravel-amqp-toolkit (AMQP with retry and dead letter queues), laravel-eloquent-atomic (atomic upserts with soft-delete awareness), laravel-global-error-formatter (standardized JSON error responses), laravel-timezone-middleware (UTC storage with automatic timezone conversion), and laravel-translation-middleware (automatic locale detection with model translations).",
+    "tradeoff": "Maintaining shared packages means backward compatibility discipline — breaking changes require migration guides and coordinated updates across consuming projects.",
+    "relatedProject": "",
+    "externalLink": { "url": "https://packagist.org/users/jeromejhipolito/packages/", "label": "All 7 packages on Packagist" },
+    "icon": "package"
+  },
+  {
+    "title": "Multi-Tenancy Architecture",
+    "plainDescription": "I build applications where one codebase serves multiple clients — each with their own data, branding, and configuration — without deploying separate instances for each.",
+    "technicalDeepDive": "I implement multi-tenancy using database-level isolation (tenant-scoped queries with automatic filtering), middleware-based tenant resolution (via subdomain, header, or URL), and tenant-aware caching. Each tenant gets isolated data, configurable feature sets, and independent billing. Applied across SaaS platforms, marketing tools, and eCommerce systems.",
+    "tradeoff": "Multi-tenancy adds complexity to every query and cache operation — you must guarantee tenant isolation at the data layer or risk cross-tenant data leaks. Thorough testing of tenant boundary enforcement is non-negotiable.",
+    "relatedProject": "",
+    "icon": "building"
+  }
+]
