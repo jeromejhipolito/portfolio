@@ -7,15 +7,16 @@
     "responsibilities": [
       "Developed full-stack applications using Laravel/Filament for backend and Next.js for frontend, enhancing system scalability and reliability",
       "Designed and maintained relational database systems, improving data management and application performance",
-      "Implemented multi-tenant architectures with microservices using HTTP APIs and RabbitMQ, employing Saga pattern for distributed transactions",
-      "Introduced feature flag strategies and idempotency techniques, ensuring consistent and reliable operations",
+      "Implemented multi-tenant architectures with microservices using HTTP APIs, Apache Kafka, and RabbitMQ, employing Saga pattern for distributed transactions and event-driven communication",
+      "Built and maintained Kafka producers and consumers to enable asynchronous processing, service decoupling, and high-throughput data pipelines",
+      "Introduced feature flag strategies and idempotency techniques, ensuring consistent and reliable operations across distributed systems",
       "Created unit tests with Pest and E2E tests with Playwright, boosting software quality assurance",
-      "Mentored and onboarded 20+ developers across multiple teams, fostering skill development and team integration",
+      "Mentored and onboarded 5 new developers, fostering skill development and team integration",
       "Managed projects end-to-end, overseeing repository management and enforcing version control best practices",
       "Conducted 15+ technical interviews to streamline the recruitment process"
     ],
-    "techStack": ["Laravel", "Filament", "Next.js", "PHP", "MySQL", "RabbitMQ", "Microservices", "Playwright", "Pest", "Docker", "LINE API"],
-    "outcomeMetric": "Tech Lead · 6 production systems · Mentored 20+ devs · 15+ interviews",
+    "techStack": ["Laravel", "Filament", "Next.js", "PHP", "MySQL", "Apache Kafka", "RabbitMQ", "Microservices", "Playwright", "Pest", "Docker", "LINE API"],
+    "outcomeMetric": "Tech Lead · 6 production systems · Mentored 5 devs · 15+ interviews",
     "projects": [
       {
         "name": "Marketing Tool (LINE Integration)",
