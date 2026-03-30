@@ -13,7 +13,7 @@
   "ogImage": "/og-image.svg",
   "proofMetrics": [
     { "value": "4+", "label": "Years Experience" },
-    { "value": "660+", "label": "Automated Tests" },
+    { "value": "500+", "label": "Automated E2E Tests" },
     { "value": "5", "label": "Devs Mentored" },
     { "value": "15+", "label": "Tech Interviews" },
     { "value": "A+", "label": "Security Headers" },
