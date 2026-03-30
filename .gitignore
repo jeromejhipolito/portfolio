@@ -46,3 +46,5 @@ screenshots/
 public/generate-video.html
 public/Jerome-Resume-README.md
 .playwright-mcp/
+
+.vercel

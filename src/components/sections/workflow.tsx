@@ -119,8 +119,8 @@ export function Workflow() {
           </p>
           <p>
             This workflow isn&apos;t just &ldquo;prompting AI and hoping for the best.&rdquo;{' '}
-            <span className="font-semibold text-accent">Smart Workflows is a plugin I created</span> — a custom agentic
-            workflow system built on Claude Code using MCPs, born from a year of encountering AI&apos;s real problems:
+            <span className="font-semibold text-accent">Smart Workflows is a plugin I created</span>
+            {' '}— a custom agentic workflow system built on Claude Code using MCPs, born from a year of encountering AI&apos;s real problems:
             hallucinations, context drift, and compounding errors on large-scale projects. Every fix I made became a rule
             in the plugin — so the same mistake never happens twice.
           </p>
