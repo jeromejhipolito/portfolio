@@ -10,7 +10,7 @@ import { Section } from '@/components/ui/section';
 import { Heading } from '@/components/ui/heading';
 
 // Key technologies to show as filter tabs (order matters)
-const FILTER_TAGS = ['Next.js', 'NestJS', 'Laravel', 'React', 'TypeScript', 'PostgreSQL', 'Kafka', 'Socket.IO'];
+const FILTER_TAGS = ['Next.js', 'NestJS', 'Fastify', 'Laravel', 'React', 'TypeScript', 'PostgreSQL', 'Redis', 'BullMQ', 'Prisma'];
 
 export function Projects() {
   const searchParams = useSearchParams();
