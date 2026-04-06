@@ -70,8 +70,8 @@
     "gallery": [
       { "src": "/projects/money-management-dashboard.png", "alt": "Dashboard — net worth, income/expense cards, category breakdown with charts, scheduled transactions, and recent activity" },
       { "src": "/projects/money-management-transactions.png", "alt": "Transactions — filterable table with income/expense/transfer types, category tags, search, and pagination" },
-      { "src": "/projects/money-management-wallet.png", "alt": "Wallet — multi-account cards (Cash, Checking, Petty Cash), balance summaries, and transaction history per category" },
-      { "src": "/projects/money-management-scheduled.png", "alt": "Scheduled transactions — monthly cash flow planning grouped by date, with income/expense breakdown and running balance" }
+      { "src": "/projects/money-management-wallet.png", "alt": "Investments — stock portfolio account card with APR, balance tracking, dividend payouts, and trading fee history" },
+      { "src": "/projects/money-management-scheduled.png", "alt": "Assets — property tracking with House and Lot account, renovation expenses, and value appreciation history" }
     ]
   },
   {
