@@ -7,9 +7,9 @@ import { siteConfig } from '@/data/site-config';
 
 const navLinks = [
   { label: 'Intro', href: '#video-intro' },
+  { label: 'Experience', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Workflow', href: '#workflow' },
-  { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 
