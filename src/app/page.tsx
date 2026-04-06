@@ -17,13 +17,13 @@ export default function Home() {
       <VideoIntro />
       <ProofBar />
 
+      <Experience />
+
       <Suspense fallback={null}>
         <Projects />
       </Suspense>
 
       <Workflow />
-
-      <Experience />
 
       <Contact />
 
