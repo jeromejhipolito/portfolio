@@ -40,9 +40,21 @@ export function Nav() {
       { rootMargin: '-40% 0px -60% 0px' },
     );
 
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    // Use MutationObserver to catch Suspense-wrapped sections that mount late
+    const observeSections = () => {
+      observer.disconnect();
+      document.querySelectorAll('section[id]').forEach((s) => observer.observe(s));
+    };
+
+    observeSections();
+
+    const mutationObserver = new MutationObserver(observeSections);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, [isHomePage]);
 
   // On subpages, prefix anchors with / so they navigate home first
