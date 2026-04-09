@@ -136,7 +136,7 @@ export function Nav() {
 
       {/* Mobile overlay */}
       {mobileOpen && (
-        <div className="fixed inset-x-0 top-16 bottom-0 z-[60] bg-[#0A0E1A] md:hidden overflow-y-auto">
+        <div className="fixed inset-0 z-[60] bg-bg-base pt-16 md:hidden overflow-y-auto">
           <div className="flex flex-col items-center gap-8 pt-12">
             {navLinks.map((link) => (
               <a
