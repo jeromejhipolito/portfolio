@@ -69,7 +69,7 @@ export function Nav() {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all',
+        'fixed top-0 left-0 right-0 z-[70] transition-all',
         scrolled
           ? 'bg-bg-base/80 backdrop-blur-md border-b border-border-subtle'
           : 'bg-transparent',
@@ -136,7 +136,7 @@ export function Nav() {
 
       {/* Mobile overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-16 z-40 bg-bg-base backdrop-blur-none md:hidden overflow-y-auto">
+        <div className="fixed inset-x-0 top-16 bottom-0 z-[60] bg-[#0A0E1A] md:hidden overflow-y-auto">
           <div className="flex flex-col items-center gap-8 pt-12">
             {navLinks.map((link) => (
               <a
