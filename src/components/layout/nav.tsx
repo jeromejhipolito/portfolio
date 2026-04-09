@@ -143,7 +143,12 @@ export function Nav() {
                 key={link.href}
                 href={getHref(link.href)}
                 onClick={() => setMobileOpen(false)}
-                className="text-xl text-text-primary"
+                className={cn(
+                  'text-xl transition-colors',
+                  isHomePage && activeSection === link.href.slice(1)
+                    ? 'font-semibold text-accent'
+                    : 'text-text-primary',
+                )}
               >
                 {link.label}
               </a>
