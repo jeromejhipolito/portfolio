@@ -26,6 +26,12 @@ export function Nav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   useEffect(() => {
     if (!isHomePage) return;
 
@@ -130,7 +136,7 @@ export function Nav() {
 
       {/* Mobile overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-16 z-40 bg-bg-base/95 backdrop-blur-lg md:hidden">
+        <div className="fixed inset-0 top-16 z-40 bg-bg-base backdrop-blur-none md:hidden overflow-y-auto">
           <div className="flex flex-col items-center gap-8 pt-12">
             {navLinks.map((link) => (
               <a
