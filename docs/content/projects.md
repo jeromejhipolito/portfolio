@@ -169,7 +169,7 @@ cannot invent a stylist, quote a price, pick a slot, or confirm a booking, becau
 are wired to its output. A booking is authorised by a row the server wrote when the agent actually
 showed you a summary, and by your own word "yes" — never by a field the model emits.
 
-**Impact:** 135 live assertions across three suites. Each one fires a real workflow and then asks
+**Impact:** 139 live assertions across three suites. Each one fires a real workflow and then asks
 Postgres what actually happened, because the reply and the data disagreeing is the failure the
 design exists to prevent.
 
@@ -192,8 +192,8 @@ around it, and behind a sharper model those same defects ship silently. That cho
 them, including a booking reference trusted because the model echoed it rather than because the
 customer typed it.
 
-**Outcome Metric:** 135 live assertions · 14 workflows · 4 database constraints · 352 adversarial
-cases reviewed
+**Outcome Metric:** 139 live assertions · 14 workflows · 4 database constraints · 30 defects found by review and fixed
+
 
 **Code Diff (for card flip — 10 lines):**
 ```diff
