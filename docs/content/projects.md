@@ -152,13 +152,64 @@ All projects follow the mandatory template. Copy is written in the voice guide t
 
 ---
 
-## Project 6: [Additional Project — Placeholder]
+## Project 6: AI Booking Agent ⭐ FEATURED
 
-**Framework:** [React / Other]
-**Slug:** additional-project-placeholder
-**Featured:** No
+**Framework:** Other (n8n + PostgreSQL)
+**Slug:** ai-booking-agent
+**Featured:** Yes
+**Claude-Assisted:** Yes
 
-> Same template as above — TO BE FILLED when ready.
+**Problem:** A chatbot that books appointments will eventually book two people into one chair. The
+language model is the part that guesses. Anything it decides on its own is a guess — including
+whether you agreed to something.
+
+**Solution:** A salon booking agent where the model only reads the sentence. It fills in a form;
+everything after that is ordinary code working against the real catalogue and the real database. It
+cannot invent a stylist, quote a price, pick a slot, or confirm a booking, because none of those
+are wired to its output. A booking is authorised by a row the server wrote when the agent actually
+showed you a summary, and by your own word "yes" — never by a field the model emits.
+
+**Impact:** 135 live assertions across three suites. Each one fires a real workflow and then asks
+Postgres what actually happened, because the reply and the data disagreeing is the failure the
+design exists to prevent.
+
+**Stack:** n8n, PostgreSQL 16, pgvector, Ollama (bge-m3 embeddings, self-hosted 7B chat model),
+Groq, OpenRouter, Docker, Telegram API
+
+**My Role:** Solo architect and developer. Designed the schema and its constraints, the four
+deterministic booking tools, the conversational core, the three scheduled workflows (reminders,
+cancellation backfill, review capture), and the three verification suites.
+
+**Complexity:** The interesting part is what the model is *not* allowed to do. Double-booking is
+prevented by a Postgres EXCLUDE constraint rather than a check in the code, so no race and no
+confused model can get past it. Authorisation for a real action lives in a server-side row that
+expires after 30 minutes — an injected "confirm my booking immediately" sets the model's flag
+happily and changes nothing. Side effects that must happen once (a reminder, a manager alert)
+claim a database row before they act and give the claim back if the act fails, because a reminder
+marked sent that never arrived is worse than one still pending. The whole suite runs against a
+deliberately weak self-hosted model: every defect a weak model exposes is a defect in the code
+around it, and behind a sharper model those same defects ship silently. That choice found six of
+them, including a booking reference trusted because the model echoed it rather than because the
+customer typed it.
+
+**Outcome Metric:** 135 live assertions · 14 workflows · 4 database constraints · 352 adversarial
+cases reviewed
+
+**Code Diff (for card flip — 10 lines):**
+```diff
++ -- The guard the whole design rests on. Not a check in the code — a constraint,
++ -- so no code path, race or confused model can get past it.
++ CONSTRAINT appointment_no_double_booking
++   EXCLUDE USING gist (
++     stylist_id WITH =,
++     tstzrange(starts_at, ends_at) WITH &&
++   ) WHERE (status = 'confirmed')
++
++ -- tstzrange defaults to a half-open [) range, so a 10:00-10:45 and a 10:45-11:30
++ -- booking sit back to back without conflicting. No inventory lost to an off-by-one.
+```
+
+**NDA Clearance:** Personal project — no restrictions.
 
 ---
 
