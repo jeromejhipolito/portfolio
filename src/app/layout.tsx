@@ -17,22 +17,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Jerome Hipolito — Senior Full Stack Developer, Philippines | Laravel · Next.js · React',
+  title: 'Jerome Hipolito | Full Stack Engineer, AI Workflows with Claude Code & n8n',
   description:
     'Senior Full Stack Developer specializing in distributed systems, microservices, and AI-assisted development. One-person team delivering architecture to E2E testing. Open to remote roles.',
   openGraph: {
-    title: 'Jerome Hipolito — Senior Full Stack Developer',
+    title: 'Jerome Hipolito | Full Stack Engineer, AI Workflows',
     description:
-      'One engineer. Full stack. 500+ automated tests. See the work and the workflow.',
+      'I build AI agent pipelines that ship tested code. See the work and the workflow.',
     type: 'website',
     locale: 'en_US',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630 }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jerome Hipolito — Senior Full Stack Developer',
+    images: ['/og-image.png'],
+    title: 'Jerome Hipolito | Full Stack Engineer, AI Workflows',
     description:
-      'One engineer. Full stack. 500+ automated tests. See the work and the workflow.',
+      'I build AI agent pipelines that ship tested code. See the work and the workflow.',
   },
   robots: {
     index: true,
