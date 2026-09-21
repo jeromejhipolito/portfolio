@@ -1,9 +1,56 @@
 [
   {
+    "company": "Fincom Technologies",
+    "companyContext": "Technology company behind MallPlus, a multi vendor online marketplace in the Philippines",
+    "role": "Full Stack Developer",
+    "startDate": "Apr 2026",
+    "responsibilities": [
+      "Shipped features across 4 codebases: a Node.js/TypeScript marketplace API, Nuxt admin and seller dashboards, a customer storefront, and a NestJS customer support ticketing system",
+      "Built an AI development workflow on Claude Code that plans, builds, tests, QAs in a real browser, records a video walkthrough to Telegram, opens the merge request, and runs an automated code review until it passes",
+      "Gave the workflow a second brain of 7,000+ notes (decisions, verified results, past mistakes) that it checks before acting, so it only asks me when the answer is missing",
+      "Ran several AI sessions in parallel, each in its own git worktree, limited only by machine RAM",
+      "Handled 580+ tickets since April 2026; 540+ are done or live in production",
+      "Built role based access control and masked customer data with audited reveal for the support ticketing system",
+      "Added an outbox between the marketplace and the ticketing system so no customer concern is lost or duplicated when a service is down",
+      "Built n8n automations that connect Jira, Google Sheets, Slack and Telegram",
+      "Introduced AI assisted development to the team and shared the workflow; the other developers now use it for their own work"
+    ],
+    "techStack": ["Node.js", "TypeScript", "Medusa", "NestJS", "Nuxt", "Vue", "PostgreSQL", "Redis", "Claude Code", "n8n", "Playwright", "Docker", "GitLab CI"],
+    "outcomeMetric": "580+ tickets since Apr 2026 · 1,000+ merge requests merged · Team runs on my AI workflow",
+    "projects": [
+      {
+        "name": "AI Development Workflow",
+        "description": "Claude Code pipeline from plan to merge request: hardened acceptance criteria, phased build, tests, browser QA with per criterion screenshots, video walkthrough, and an automated review loop. Hooks block commit until QA proof exists.",
+        "techStack": ["Claude Code", "Playwright", "GitLab CI", "Hooks"]
+      },
+      {
+        "name": "Second Brain (AI Memory)",
+        "description": "Markdown knowledge base with a hot session cache and semantic search, ranked so notes that were proven right come first. A guard surfaces past mistakes before they repeat.",
+        "techStack": ["Markdown", "Python", "Ollama", "Obsidian"]
+      },
+      {
+        "name": "Customer Support Ticketing System",
+        "description": "Platform agnostic ticketing for support agents: role based access, SLAs, escalations and child cases, email threading, and masked customer data with audit logs.",
+        "techStack": ["NestJS", "Nuxt", "PostgreSQL", "Redis"]
+      },
+      {
+        "name": "Marketplace to Ticketing Integration",
+        "description": "Webhooks plus an outbox so every buyer and seller concern reaches the ticketing system exactly once, even when a service is down.",
+        "techStack": ["Medusa", "Node.js", "Webhooks", "PostgreSQL"]
+      },
+      {
+        "name": "n8n Automations",
+        "description": "Workflows that connect Jira, Google Sheets, Slack and Telegram, so repeated work runs by itself and people only get pinged when needed.",
+        "techStack": ["n8n", "Jira API", "Google Sheets API", "Telegram Bot API"]
+      }
+    ]
+  },
+  {
     "company": "Betrnk Tours",
     "companyContext": "Tourism & entertainment technology company — BGC, Taguig City",
     "role": "Senior Full Stack Developer (Tech Lead)",
     "startDate": "Feb 2024",
+    "endDate": "Apr 2026",
     "responsibilities": [
       "Developed full-stack applications using Laravel/Filament for backend and Next.js for frontend, enhancing system scalability and reliability",
       "Designed and maintained relational database systems, improving data management and application performance",
