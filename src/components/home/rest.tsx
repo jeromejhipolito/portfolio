@@ -169,6 +169,19 @@ export function Contact() {
                     <dd className="m-0"><a className="text-white underline-offset-4 hover:underline" href={`mailto:${EMAIL}`}>{EMAIL}</a></dd>
                   </div>
                   <div>
+                    <dt className="text-[#7f8aa3]">Resume</dt>
+                    <dd className="m-0 flex flex-wrap gap-x-4">
+                      <a className="text-white underline-offset-4 hover:underline" href={siteConfig.resumeFile} download>
+                        US resume, 1 page
+                      </a>
+                      {siteConfig.cvFile && (
+                        <a className="text-white underline-offset-4 hover:underline" href={siteConfig.cvFile} download>
+                          UK CV, 2 pages
+                        </a>
+                      )}
+                    </dd>
+                  </div>
+                  <div>
                     <dt className="text-[#7f8aa3]">Local time in Bulacan, Philippines</dt>
                     <dd className="m-0 text-white tabular-nums"><Clock /></dd>
                   </div>
@@ -206,7 +219,10 @@ export function Footer() {
             <a key={s.url} href={s.url} target="_blank" rel="noreferrer" className="transition-colors duration-150 hover:text-white">{s.label}</a>
           ))}
           <a href="https://packagist.org/users/jeromejhipolito" target="_blank" rel="noreferrer" className="transition-colors duration-150 hover:text-white">Packagist</a>
-          <a href={siteConfig.resumeFile} download className="transition-colors duration-150 hover:text-white">Resume</a>
+          <a href={siteConfig.resumeFile} download className="transition-colors duration-150 hover:text-white">Resume (US)</a>
+          {siteConfig.cvFile && (
+            <a href={siteConfig.cvFile} download className="transition-colors duration-150 hover:text-white">CV (UK)</a>
+          )}
         </div>
       </div>
     </footer>

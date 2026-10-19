@@ -68,6 +68,7 @@ export const siteConfigSchema = z.object({
   location: z.string().min(1),
   contactEmail: z.string(),
   resumeFile: z.string(),
+  cvFile: z.string().optional(),
   resumeDate: z.string(),
   metaTitle: z.string().min(1),
   metaDescription: z.string().min(1),

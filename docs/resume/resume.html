@@ -1,80 +1,73 @@
 <!doctype html>
+<!--
+  One source, two outputs (rendered by docs/resume/render.mjs):
+    body.uk  -> UK CV:     A4, 2 pages, Arial 11pt, "Profile", British spelling, references line
+    body.us  -> US resume: US Letter, 1 page, Arial 10pt, "Summary", US spelling, no references line
+  Elements marked .uk or .us only appear in that version. Layout is single column for ATS parsing.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Jerome Hipolito Resume</title>
+<title>Jerome Hipolito</title>
 <style>
-  @page { size: A4; margin: 15mm 15mm 15mm 15mm; }
-  /* Print-friendly versions of the portfolio's cyan and violet. */
-  :root { --ink:#141b26; --muted:#5a6573; --faint:#8a94a1; --cyan:#0e7490; --cyan-2:#0891b2; --violet:#6d28d9; --chip:#ecf8fb; --chip-b:#bfe5ee; --rule:#e2e7ec; }
+  :root { --ink:#141b26; --muted:#4f5a67; --cyan:#0e7490; --violet:#6d28d9; --chip:#ecf8fb; --chip-b:#bfe5ee; --rule:#d9dfe5; }
   * { box-sizing: border-box; }
-  body { margin:0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color:var(--ink); font-size:9.5pt; line-height:1.45; }
-  h1 { font-size:25pt; margin:0 0 2pt; letter-spacing:-0.4pt; }
-  .role { font-weight:700; font-size:11.5pt; margin-bottom:4pt; color:var(--cyan); }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--ink); line-height:1.38; }
+  body.uk { font-size:11pt; }
+  body.us { font-size:10pt; line-height:1.3; }
+  body.uk .us, body.us .uk { display:none !important; }
+
+  h1 { font-size:22pt; margin:0 0 2pt; }
+  .role { font-weight:700; font-size:12pt; margin-bottom:3pt; color:var(--cyan); }
   .role span { color:var(--violet); }
-  .meta { color:var(--muted); font-size:8.8pt; margin-bottom:6pt; }
-  .contact { font-size:8.8pt; color:var(--muted); padding-bottom:8pt; margin-bottom:11pt; position:relative; }
-  .contact::after { content:""; position:absolute; left:0; right:0; bottom:0; height:2.4pt; background:linear-gradient(90deg, var(--cyan-2), var(--violet)); }
-  .contact a { color:var(--cyan); text-decoration:none; }
-  .sep { color:#c3cad0; margin:0 6pt; }
-  h2 { font-size:10.5pt; letter-spacing:0; text-transform:uppercase; margin:12pt 0 7pt; padding-bottom:4pt; border-bottom:0.8pt solid var(--rule); display:flex; align-items:center; gap:7pt; }
-  h2::before { content:""; width:6pt; height:6pt; border-radius:50%; background:linear-gradient(135deg, var(--cyan-2), var(--violet)); display:inline-block; }
-  p.summary { margin:0; color:#323d49; }
-  .highlights { display:flex; flex-wrap:wrap; gap:5pt; margin:8pt 0 0; padding:0; list-style:none; }
-  .highlights li.hl { padding:3.5pt 6.5pt; margin:0; }
-  .highlights li::before { display:none; }
-  .hl { border:0.8pt solid var(--chip-b); background:var(--chip); border-radius:4pt; padding:4pt 8pt; color:var(--muted); }
-  .hl b { font-size:12pt; color:var(--cyan); }
-  .hl span { font-size:8pt; color:var(--muted); }
-  .job { margin-bottom:9pt; }
+  .meta, .contact { color:var(--muted); font-size:0.92em; }
+  .contact { padding-bottom:6pt; margin-bottom:8pt; border-bottom:2pt solid var(--cyan); }
+  .contact a, a.link { color:var(--cyan); text-decoration:none; }
+  .sep { color:#9aa4ae; margin:0 2pt; }
+  /* Contact items never break inside, so phone numbers and URLs stay whole for parsers. */
+  .ci, a.link { white-space:nowrap; }
+
+  h2 { font-size:11.5pt; text-transform:uppercase; margin:10pt 0 5pt; padding-bottom:3pt; border-bottom:0.8pt solid var(--rule); color:var(--ink); }
+  body.us h2 { font-size:10.5pt; margin:6pt 0 3pt; }
+  p { margin:0 0 4pt; }
+  .summary { color:#2b3540; }
+
+  .highlights { display:flex; flex-wrap:wrap; gap:5pt; margin:6pt 0 0; padding:0; list-style:none; }
+  body.uk .highlights li.hl { font-size:0.8em; }
+  .highlights li.hl { padding:2.5pt 6pt; margin:0; border:0.8pt solid var(--chip-b); background:var(--chip); border-radius:3pt; color:var(--muted); font-size:0.88em; }
+  .highlights li.hl::before { display:none; }
+  .hl b { color:var(--cyan); font-size:1.08em; }
+
+  .job { margin-bottom:7pt; }
+  body.us .job { margin-bottom:5pt; }
   .job-head { display:flex; justify-content:space-between; align-items:baseline; break-after:avoid; }
-  .job-title { font-weight:700; font-size:10.3pt; }
-  .dates { color:var(--faint); font-weight:700; font-size:8.4pt; white-space:nowrap; }
-  .company { color:var(--cyan); font-weight:700; font-size:9pt; margin:1pt 0 4pt; break-after:avoid; }
+  .job-title { font-weight:700; }
+  .dates { color:var(--muted); font-weight:700; font-size:0.9em; white-space:nowrap; }
+  .company { color:var(--cyan); font-weight:700; font-size:0.95em; margin:1pt 0 3pt; break-after:avoid; }
   ul { margin:0; padding-left:0; list-style:none; }
-  li { position:relative; padding-left:12pt; margin-bottom:3pt; color:#303b47; break-inside:avoid; }
-  li::before { content:""; position:absolute; left:2pt; top:5.2pt; width:4pt; height:4pt; border-radius:50%; background:#67c4d6; }
-  li.projects { color:var(--muted); }
-  li.projects::before { background:#a78bfa; }
-  b { color:var(--ink); }
-  .proj { display:grid; gap:5pt; }
-  .proj div { break-inside:avoid; }
-  .proj .name { font-weight:700; font-size:9.4pt; }
-  .proj .name a { color:var(--ink); text-decoration:none; }
-  .proj .tests { color:var(--violet); font-weight:700; font-size:8.4pt; margin-left:4pt; }
-  .proj .row { font-size:9pt; color:#3a4552; }
-  .proj p { margin:0; color:#3a4552; font-size:8.8pt; }
-  .proj .name { display:inline; }
-  .proj .row { break-inside:avoid; }
-  .skills { margin:0 0 4pt; color:#303b47; }
-  .skills .dates { margin-left:6pt; }
-  .skill-label { color:var(--muted); font-size:8.4pt; font-weight:700; margin:7pt 0 4pt; }
-  .chips { display:flex; flex-wrap:wrap; gap:4pt; }
-  .chip { background:var(--chip); border:0.7pt solid var(--chip-b); color:var(--cyan); font-weight:700; font-size:8pt; padding:2.5pt 6pt; border-radius:3pt; }
-  .chip.ai { background:#f3effe; border-color:#d9cdfb; color:var(--violet); }
-  .two { display:grid; grid-template-columns:1fr 1fr; gap:18pt; break-inside:avoid-page; }
-  .two h2 { margin-top:14pt; }
-  .edu-school { font-weight:700; }
-  .small { color:var(--muted); font-size:8.8pt; }
-  .link-label { font-weight:700; font-size:9pt; margin-top:2pt; }
-  .link { color:var(--cyan); font-size:8.8pt; text-decoration:none; }
+  li { position:relative; padding-left:11pt; margin-bottom:2.5pt; color:#26303b; break-inside:avoid; }
+  body.us li { margin-bottom:1.5pt; }
+  li::before { content:"•"; position:absolute; left:1pt; color:var(--cyan); }
+  .plain { color:#26303b; }
+  .plain b { color:var(--ink); }
 </style>
 </head>
-<body>
+<body class="uk">
   <h1>Jerome Hipolito</h1>
   <div class="role">Full-Stack Software Engineer <span>· AI Agent Workflows</span></div>
-  <div class="meta">4+ years professional experience <span class="sep">·</span> Remote, Philippines (UTC+8) <span class="sep">·</span> Available during UK business hours and US mornings</div>
+  <div class="meta">4+ years’ experience<span class="sep">·</span>Remote, Philippines (UTC+8)<span class="sep">·</span><span class="uk">Available during UK business hours</span><span class="us">Available for US morning and UK hours</span></div>
   <div class="contact">
-    +63 905 813 5728<span class="sep">·</span><a href="mailto:jeromehipolito14@gmail.com">jeromehipolito14@gmail.com</a><span class="sep">·</span><a href="https://www.linkedin.com/in/jeromehipolito">linkedin.com/in/jeromehipolito</a><span class="sep">·</span><a href="https://github.com/jeromejhipolito">github.com/jeromejhipolito</a>
+    <span class="ci">+63 905 813 5728</span> <span class="sep">·</span> <a class="ci" href="mailto:jeromehipolito14@gmail.com">jeromehipolito14@gmail.com</a> <span class="sep">·</span> <a class="ci" href="https://www.linkedin.com/in/jeromehipolito">linkedin.com/in/jeromehipolito</a> <span class="sep">·</span> <a class="ci" href="https://github.com/jeromejhipolito">github.com/jeromejhipolito</a><span class="us"> <span class="sep">·</span> <a class="ci" href="https://portfolio-sooty-phi-99cvtavq7s.vercel.app/">portfolio-sooty-phi-99cvtavq7s.vercel.app</a></span>
   </div>
 
-  <h2>Summary</h2>
-  <p class="summary">Full-stack software engineer with 4+ years building web and e-commerce platforms in TypeScript/Node.js, Vue 3/Nuxt, Next.js and Laravel. Runs five Claude Code agents in parallel that take tickets from plan through build, tests, browser QA and code review on their own, on one 16 GB machine and one Claude subscription. The agents learn from their own errors through a shared knowledge base that blocks known mistakes from repeating, and every change is reviewed and signed off before it merges. Built distributed systems by hand before AI tools, including Kafka microservices, saga transactions and payment flows, and led a team of five as tech lead.</p>
-  <ul class="highlights">
-    <li class="hl"><b>580+</b> <span>tickets handled</span></li>
-    <li class="hl"><b>1,000+</b> <span>merge requests</span></li>
-    <li class="hl"><b>4,340</b> <span>lessons captured</span></li>
-    <li class="hl"><b>7,836</b> <span>repeat errors prevented</span></li>
+  <h2><span class="uk">Profile</span><span class="us">Summary</span></h2>
+  <p class="summary uk">Full-stack software engineer with 4+ years building web and e-commerce platforms in TypeScript/Node.js, Vue/Nuxt, Next.js and Laravel. Runs five Claude Code agents in parallel that take tickets from plan to code review on their own, learn from their own errors through a shared knowledge base, and ship only after review and sign-off. Built distributed systems by hand before AI tools, including Kafka microservices and payment flows, and led a team of five.</p>
+  <p class="summary us">Full-stack software engineer with 4+ years in TypeScript/Node.js, Vue/Nuxt, Next.js and Laravel. Runs five Claude Code agents in parallel that take tickets from plan to code review, learn from their own errors, and ship only after review. Built Kafka microservices and payment flows by hand before AI tools; former tech lead of five.</p>
+  <ul class="highlights uk">
+    <li class="hl"><b>580+</b> tickets handled</li>
+    <li class="hl"><b>1,000+</b> merge requests</li>
+    <li class="hl"><b>4,340</b> lessons captured</li>
+    <li class="hl"><b>7,836</b> repeat errors prevented</li>
   </ul>
 
   <h2>Work Experience</h2>
@@ -83,58 +76,68 @@
     <div class="job-head"><span class="job-title">Full-Stack Developer</span><span class="dates">Apr 2026 – Present</span></div>
     <div class="company">Fincom Technologies · MallPlus Marketplace</div>
     <ul>
-      <li>Build <b>MallPlus</b>, a multi-vendor marketplace for the Philippines on <b>Medusa v2</b> and Mercur (Node.js/TypeScript), with Vue 3/Nuxt admin, seller center and storefront apps.</li>
-      <li>Designed an <b>AI agent workflow on Claude Code</b> that takes a ticket from plan to merge request: hardened acceptance criteria, phased build, tests, <b>Playwright</b> browser QA with a video walkthrough, and an automated review loop that runs until it approves.</li>
-      <li>Run <b>five agents in parallel</b>, each in its own git worktree, on one 16 GB Mac and one Claude subscription. RAM, CPU and subscription usage are the only limits on adding more.</li>
-      <li>Built the agents a <b>second brain</b> of 7,000+ notes (decisions, verified results, past mistakes). Each error becomes a lesson, and a guard checks every step against them: <b>4,340 lessons</b> captured and <b>7,836 repeat errors prevented</b> so far.</li>
-      <li>Handled <b>580+ tickets</b> since April 2026, with <b>540+ done or live in production</b> and <b>1,000+ merge requests</b> merged. Merge requests are small and scoped, and none merges without my review.</li>
-      <li>Shipped after-sales and money flows: returns and refunds, seller disputes, escrow, <b>GCash</b> payments, commission and payouts, keeping buyer, seller and platform balances consistent.</li>
-      <li>Built a <b>NestJS</b> customer support ticketing system with role-based access, SLAs, escalations and masked customer data with audited reveal, connected to the marketplace by webhooks and an outbox so no concern is lost or duplicated.</li>
-      <li>Built <b>n8n</b> automations across Jira, Google Sheets, Slack and Telegram, and introduced the AI workflow to the team, who now use it for their own work.</li>
+      <li class="us">Build <b>MallPlus</b>, a multi-vendor marketplace on <b>Medusa v2</b> (Node.js/TypeScript) and Vue/Nuxt, shipping returns, refunds, escrow, <b>GCash</b> payments, commission and payouts.</li>
+      <li class="us">Designed an <b>AI agent workflow on Claude Code</b> and run <b>five agents in parallel</b> on one 16 GB machine and one Claude subscription, each taking a ticket through plan, build, tests, <b>Playwright</b> browser QA and an automated review loop.</li>
+      <li class="uk">Build <b>MallPlus</b>, a multi-vendor marketplace for the Philippines on <b>Medusa v2</b> and Mercur (Node.js/TypeScript), with Vue/Nuxt admin, <span class="uk">seller centre</span><span class="us">seller center</span> and storefront apps.</li>
+      <li class="uk">Designed an <b>AI agent workflow on Claude Code</b> that takes a ticket from plan to merge request: hardened acceptance criteria, phased build, tests, <b>Playwright</b> browser QA with video, and an automated review loop.</li>
+      <li class="uk">Run <b>five agents in parallel</b>, each in its own git worktree, on one 16 GB machine and one Claude subscription<span class="uk">; RAM, CPU and subscription usage are the only limits on adding more</span>.</li>
+      <li>Built a <b>second brain</b> of 7,000+ notes the agents check before acting: <b>4,340 lessons</b> captured and <b>7,836 repeat errors prevented</b> so far.</li>
+      <li>Handled <b>580+ tickets</b> since April 2026, with <b>540+ done or live in production</b> and <b>1,000+ merge requests</b>, each reviewed by me before merge.</li>
+      <li class="uk">Shipped returns and refunds, seller disputes, escrow, <b>GCash</b> payments, commission and payouts<span class="uk">, keeping buyer, seller and platform balances consistent</span>.</li>
+      <li class="uk">Built a <b>NestJS</b> customer support ticketing system with role-based access, SLAs, escalations and masked customer data with audited reveal, connected to the marketplace by webhooks and an outbox so no concern is lost or duplicated.</li>
+      <li class="us">Built a <b>NestJS</b> support ticketing system with role-based access, SLAs and audited access to masked customer data.</li>
+      <li class="uk">Built <b>n8n</b> automations across Jira, Google Sheets, Slack and Telegram, and introduced the AI workflow to the team, who now use it for their own work.</li>
     </ul>
   </div>
 
   <div class="job">
     <div class="job-head"><span class="job-title">Senior Full-Stack Developer (Tech Lead)</span><span class="dates">Feb 2024 – Apr 2026</span></div>
-    <div class="company">Betrnk Tours · BGC, Taguig City</div>
+    <div class="company">Betrnk Tours · Taguig City, Philippines</div>
     <ul>
-      <li>Built full-stack applications with <b>Laravel</b>/Filament and <b>Next.js</b>, and designed their relational databases.</li>
-      <li>Implemented multi-tenant microservices over HTTP APIs, <b>Apache Kafka</b> and <b>RabbitMQ</b>, using the Saga pattern for distributed transactions, plus feature flags and idempotency for reliable operations.</li>
-      <li>Wrote unit tests with <b>Pest</b> and end-to-end tests with <b>Playwright</b> across all systems.</li>
+      <li>Built multi-tenant microservices with <b>Laravel</b>, <b>Next.js</b>, <b>Apache Kafka</b> and <b>RabbitMQ</b>, using the Saga pattern, feature flags and idempotency for reliable distributed transactions.</li>
+      <li class="uk">Designed relational databases and wrote unit tests with <b>Pest</b> and end-to-end tests with <b>Playwright</b> across all systems.</li>
       <li>Mentored and onboarded 5 developers, owned projects end to end, and ran 15+ technical interviews.</li>
-      <li class="projects">Projects: LINE marketing platform, company landing and booking system, casino cage system with live forex rates, e&#8209;wallet API, coupon and ads SaaS on microservices.</li>
+      <li>Delivered a LINE marketing platform, a booking system, a casino cage system with live forex rates, an e&#8209;wallet API and a coupon and ads SaaS<span class="us">, tested with Pest and Playwright</span>.</li>
     </ul>
   </div>
 
   <div class="job">
     <div class="job-head"><span class="job-title">Junior Full-Stack Developer</span><span class="dates">Jun 2022 – Feb 2024</span></div>
-    <div class="company">Halcyon Agile</div>
+    <div class="company">Halcyon Agile · Philippines</div>
     <ul>
-      <li>Built a learning management system, two e-commerce platforms and a multi-tenant SaaS platform with <b>Node.js</b>, <b>Next.js</b>, <b>Laravel</b>/Filament and Tailwind CSS.</li>
-      <li>Implemented the Saga pattern with idempotency on Kafka-based microservices across 5 services (inventory, CMS, users, payment, wallet).</li>
-      <li>Worked in SCRUM, improving delivery timelines by about 15%, and designed MySQL schemas for service-focused platforms.</li>
+      <li class="us">Built an LMS, two e-commerce platforms and a multi-tenant SaaS with <b>Node.js</b>, <b>Next.js</b> and <b>Laravel</b>, including Kafka microservices with sagas across 5 services.</li>
+      <li class="uk">Built a learning management system, two e-commerce platforms and a multi-tenant SaaS with <b>Node.js</b>, <b>Next.js</b> and <b>Laravel</b>.</li>
+      <li class="uk">Implemented the Saga pattern with idempotency on Kafka microservices across 5 services (inventory, CMS, users, payment, wallet).</li>
+      <li class="uk">Worked in Scrum, improving delivery timelines by about 15%, and designed MySQL schemas for service-focused platforms.</li>
     </ul>
   </div>
 
   <h2>Open-Source Projects</h2>
-  <div class="proj">
-    <div class="row"><span class="name"><a href="https://github.com/jeromejhipolito/merchantflow">MerchantFlow</a></span><span class="tests">331 tests</span>: <span>Cross-border e-commerce operations with saga orchestration, a transactional outbox, HMAC webhook verification and BullMQ.</span></div>
-    <div class="row"><span class="name"><a href="https://github.com/jeromejhipolito/flowboard">FlowBoard</a></span><span class="tests">202 tests</span>: <span>Real-time collaborative Kanban board with Socket.IO, Redis pub-sub and role-based access.</span></div>
-    <div class="row"><span class="name"><a href="https://github.com/jeromejhipolito/ai-booking-agent">AI Booking Agent</a></span><span class="tests">139 live assertions</span>: <span>n8n salon booking agent where a Postgres constraint makes double bookings impossible.</span></div>
-    <div class="row"><span class="name"><a href="https://github.com/jeromejhipolito/booking-system">BookIt</a></span><span class="tests">130 tests</span>: <span>Booking system with CQRS command and query handlers and real-time availability.</span></div>
-  </div>
+  <p class="plain us"><b>MerchantFlow</b> (331 tests, sagas and outbox), <b>FlowBoard</b> (202 tests, real-time Kanban), <b>AI Booking Agent</b> (139 live assertions, n8n + Postgres), <b>BookIt</b> (130 tests, CQRS). Code at github.com/jeromejhipolito.</p>
+  <ul class="uk">
+    <li><b>MerchantFlow</b> (331 tests): e-commerce operations with saga orchestration, a transactional outbox and webhook verification.</li>
+    <li><b>FlowBoard</b> (202 tests): real-time collaborative Kanban board with Socket.IO and Redis pub-sub.</li>
+    <li><b>AI Booking Agent</b> (139 live assertions): n8n booking agent where a Postgres constraint prevents double bookings.</li>
+    <li class="uk"><b>BookIt</b> (130 tests): booking system with CQRS command and query handlers and real-time availability.</li>
+  </ul>
 
   <h2>Skills</h2>
-  <p class="skills"><b>AI &amp; Automation:</b> Parallel AI agents (Claude Code), self-learning agent memory, MCP, automated code review, n8n</p>
-  <p class="skills"><b>Languages &amp; Frameworks:</b> TypeScript, JavaScript, PHP, SQL, Node.js, Medusa v2, NestJS, Vue 3, Nuxt, React, Next.js, Laravel</p>
-  <p class="skills"><b>Architecture &amp; Data:</b> Microservices, Kafka, RabbitMQ, saga and outbox patterns, REST APIs, webhooks, PostgreSQL, MySQL, Redis, Docker</p>
-  <p class="skills"><b>Quality &amp; Practice:</b> Playwright, Pest, Vitest, GitLab CI, Agile/Scrum, mentoring, technical interviews</p>
+  <p class="plain us"><b>Languages and frameworks:</b> TypeScript, JavaScript, PHP, SQL, Node.js, Medusa v2, NestJS, Vue, Nuxt, React, Next.js, Laravel</p>
+  <p class="plain us"><b>Architecture and data:</b> Microservices, Kafka, RabbitMQ, saga and outbox patterns, REST APIs, PostgreSQL, MySQL, Redis, Docker</p>
+  <p class="plain us"><b>AI, quality and tools:</b> Claude Code agents, MCP, n8n, automated code review, Playwright, Pest, Vitest, GitLab CI, Agile/Scrum</p>
+  <p class="plain uk"><b>AI and automation:</b> Parallel AI agents (Claude Code), agent memory, MCP, automated code review, n8n</p>
+  <p class="plain uk"><b>Languages and frameworks:</b> TypeScript, JavaScript, PHP, SQL, Node.js, Medusa v2, NestJS, Vue, Nuxt, React, Next.js, Laravel</p>
+  <p class="plain uk"><b>Architecture and data:</b> Microservices, Kafka, RabbitMQ, saga and outbox patterns, REST APIs, webhooks, PostgreSQL, MySQL, Redis, Docker</p>
+  <p class="plain uk"><b>Quality and practice:</b> Playwright, Pest, Vitest, GitLab CI, Agile/Scrum, mentoring, technical interviews</p>
 
   <h2>Education</h2>
-  <p class="skills"><b>Bulacan State University</b>, Bachelor of Science in Information Technology <span class="dates">Aug 2018 – Aug 2022</span></p>
+  <p class="plain"><b>BS Information Technology</b>, Bulacan State University<span class="sep">·</span>Aug 2018 – Aug 2022</p>
 
-  <h2>Links</h2>
-  <p class="skills"><b>Portfolio:</b> <a class="link" href="https://portfolio-sooty-phi-99cvtavq7s.vercel.app/">portfolio-sooty-phi-99cvtavq7s.vercel.app</a> <span class="sep">·</span> <b>Packagist:</b> <a class="link" href="https://packagist.org/users/jeromejhipolito">packagist.org/users/jeromejhipolito</a></p>
-  <p class="skills"><b>LinkedIn:</b> <a class="link" href="https://www.linkedin.com/in/jeromehipolito">linkedin.com/in/jeromehipolito</a> <span class="sep">·</span> <b>GitHub:</b> <a class="link" href="https://github.com/jeromejhipolito">github.com/jeromejhipolito</a></p>
+  <div class="uk">
+    <h2>Links</h2>
+    <p class="plain"><b>Portfolio:</b> <a class="link" href="https://portfolio-sooty-phi-99cvtavq7s.vercel.app/">portfolio-sooty-phi-99cvtavq7s.vercel.app</a><span class="sep">·</span><b>Packages:</b> <a class="link" href="https://packagist.org/users/jeromejhipolito">packagist.org/users/jeromejhipolito</a></p>
+    <h2>References</h2>
+    <p class="plain">Available on request.</p>
+  </div>
 </body>
 </html>
