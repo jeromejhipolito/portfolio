@@ -4,49 +4,71 @@
 <meta charset="utf-8">
 <title>Jerome Hipolito Resume</title>
 <style>
-  @page { size: A4; margin: 16mm 15mm 16mm 15mm; }
-  :root { --ink:#1f2933; --muted:#5f6b76; --faint:#8a95a0; --teal:#0e9aa7; --teal-ink:#0b6f78; --chip:#e8f6f7; --chip-b:#bfe6e9; --rule:#e3e7ea; }
+  @page { size: A4; margin: 15mm 15mm 15mm 15mm; }
+  /* Print-friendly versions of the portfolio's cyan and violet. */
+  :root { --ink:#141b26; --muted:#5a6573; --faint:#8a94a1; --cyan:#0e7490; --cyan-2:#0891b2; --violet:#6d28d9; --chip:#ecf8fb; --chip-b:#bfe5ee; --rule:#e2e7ec; }
   * { box-sizing: border-box; }
-  body { margin:0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color:var(--ink); font-size:9.6pt; line-height:1.45; }
-  h1 { font-size:24pt; margin:0 0 2pt; letter-spacing:-0.3pt; }
-  .role { color:var(--teal); font-weight:700; font-size:11.5pt; margin-bottom:4pt; }
+  body { margin:0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color:var(--ink); font-size:9.5pt; line-height:1.45; }
+  h1 { font-size:25pt; margin:0 0 2pt; letter-spacing:-0.4pt; }
+  .role { font-weight:700; font-size:11.5pt; margin-bottom:4pt; color:var(--cyan); }
+  .role span { color:var(--violet); }
   .meta { color:var(--muted); font-size:8.8pt; margin-bottom:6pt; }
-  .contact { font-size:8.8pt; color:var(--muted); padding-bottom:7pt; border-bottom:2.2pt solid var(--teal); margin-bottom:12pt; }
-  .contact a { color:var(--teal); text-decoration:none; }
+  .contact { font-size:8.8pt; color:var(--muted); padding-bottom:8pt; margin-bottom:11pt; position:relative; }
+  .contact::after { content:""; position:absolute; left:0; right:0; bottom:0; height:2.4pt; background:linear-gradient(90deg, var(--cyan-2), var(--violet)); }
+  .contact a { color:var(--cyan); text-decoration:none; }
   .sep { color:#c3cad0; margin:0 6pt; }
   h2 { font-size:10pt; letter-spacing:1.6pt; text-transform:uppercase; margin:12pt 0 7pt; padding-bottom:4pt; border-bottom:0.8pt solid var(--rule); display:flex; align-items:center; gap:7pt; }
-  h2::before { content:""; width:6pt; height:6pt; border-radius:50%; background:var(--teal); display:inline-block; }
-  p.summary { margin:0; color:#3a4651; }
-  .job { margin-bottom:9pt; break-inside:avoid-page; }
-  .job-head { display:flex; justify-content:space-between; align-items:baseline; }
+  h2::before { content:""; width:6pt; height:6pt; border-radius:50%; background:linear-gradient(135deg, var(--cyan-2), var(--violet)); display:inline-block; }
+  p.summary { margin:0; color:#323d49; }
+  .highlights { display:grid; grid-template-columns:repeat(4, 1fr); gap:6pt; margin-top:8pt; }
+  .hl { border:0.8pt solid var(--chip-b); background:var(--chip); border-radius:4pt; padding:5pt 7pt; }
+  .hl b { display:block; font-size:12.5pt; color:var(--cyan); letter-spacing:-0.2pt; }
+  .hl span { font-size:7.8pt; color:var(--muted); }
+  .job { margin-bottom:9pt; }
+  .job-head { display:flex; justify-content:space-between; align-items:baseline; break-after:avoid; }
   .job-title { font-weight:700; font-size:10.3pt; }
   .dates { color:var(--faint); font-weight:700; font-size:8.4pt; white-space:nowrap; }
-  .company { color:var(--teal); font-weight:700; font-size:9pt; margin:1pt 0 4pt; }
+  .company { color:var(--cyan); font-weight:700; font-size:9pt; margin:1pt 0 4pt; break-after:avoid; }
   ul { margin:0; padding-left:0; list-style:none; }
-  li { position:relative; padding-left:12pt; margin-bottom:3.2pt; color:#34404a; }
-  li::before { content:""; position:absolute; left:2pt; top:5.2pt; width:4pt; height:4pt; border-radius:50%; background:#7cc9cf; }
+  li { position:relative; padding-left:12pt; margin-bottom:3pt; color:#303b47; break-inside:avoid; }
+  li::before { content:""; position:absolute; left:2pt; top:5.2pt; width:4pt; height:4pt; border-radius:50%; background:#67c4d6; }
+  li.projects { color:var(--muted); }
+  li.projects::before { background:#a78bfa; }
   b { color:var(--ink); }
+  .proj { display:grid; grid-template-columns:1fr 1fr; gap:6pt 14pt; }
+  .proj div { break-inside:avoid; }
+  .proj .name { font-weight:700; font-size:9.4pt; }
+  .proj .name a { color:var(--ink); text-decoration:none; }
+  .proj .tests { color:var(--violet); font-weight:700; font-size:8pt; margin-left:4pt; }
+  .proj p { margin:1pt 0 0; color:#3a4552; font-size:8.8pt; }
   .skill-label { color:var(--muted); font-size:7.8pt; font-weight:700; letter-spacing:1.1pt; text-transform:uppercase; margin:7pt 0 4pt; }
   .chips { display:flex; flex-wrap:wrap; gap:4pt; }
-  .chip { background:var(--chip); border:0.7pt solid var(--chip-b); color:var(--teal-ink); font-weight:700; font-size:8pt; padding:2.5pt 6pt; border-radius:3pt; }
+  .chip { background:var(--chip); border:0.7pt solid var(--chip-b); color:var(--cyan); font-weight:700; font-size:8pt; padding:2.5pt 6pt; border-radius:3pt; }
+  .chip.ai { background:#f3effe; border-color:#d9cdfb; color:var(--violet); }
   .two { display:grid; grid-template-columns:1fr 1fr; gap:18pt; break-inside:avoid-page; }
   .two h2 { margin-top:14pt; }
   .edu-school { font-weight:700; }
   .small { color:var(--muted); font-size:8.8pt; }
   .link-label { font-weight:700; font-size:9pt; margin-top:2pt; }
-  .link { color:var(--teal); font-size:8.8pt; text-decoration:none; }
+  .link { color:var(--cyan); font-size:8.8pt; text-decoration:none; }
 </style>
 </head>
 <body>
   <h1>Jerome Hipolito</h1>
-  <div class="role">Full-Stack Software Engineer</div>
-  <div class="meta">Bachelor of Science in Information Technology <span class="sep">·</span> 4+ years professional experience</div>
+  <div class="role">Full-Stack Developer <span>· AI Agent Workflows</span></div>
+  <div class="meta">Bachelor of Science in Information Technology <span class="sep">·</span> 4+ years professional experience <span class="sep">·</span> Open to remote roles</div>
   <div class="contact">
-    +63 905 813 5728<span class="sep">·</span><a href="mailto:jeromehipolito14@gmail.com">jeromehipolito14@gmail.com</a><span class="sep">·</span>Central Luzon / Bulacan, Philippines<span class="sep">·</span><a href="https://portfolio-sooty-phi-99cvtavq7s.vercel.app/">Portfolio</a><span class="sep">·</span><a href="https://github.com/jeromejhipolito">GitHub</a><span class="sep">·</span><a href="https://packagist.org/users/jeromejhipolito">Packagist</a>
+    +63 905 813 5728<span class="sep">·</span><a href="mailto:jeromehipolito14@gmail.com">jeromehipolito14@gmail.com</a><span class="sep">·</span>Bulacan, Philippines<span class="sep">·</span><a href="https://portfolio-sooty-phi-99cvtavq7s.vercel.app/">Portfolio</a><span class="sep">·</span><a href="https://github.com/jeromejhipolito">GitHub</a><span class="sep">·</span><a href="https://packagist.org/users/jeromejhipolito">Packagist</a>
   </div>
 
   <h2>Summary</h2>
-  <p class="summary">Full-Stack Software Engineer with 4+ years building scalable web and e-commerce platforms across TypeScript/Node.js, Vue 3/Nuxt, Next.js, and Laravel. At Fincom Technologies I build MallPlus, a multi-vendor marketplace on Medusa v2, and I designed the AI-agent development pipeline the team now uses. It takes a ticket from plan to merge-ready with automated tests, browser QA, and code review, and runs several tickets in parallel. I learned to build software by hand long before AI tools, so the pipeline speeds up work I already know how to do. Since April 2026 I have handled 580+ tickets, with 540+ done or live in production. Strong in microservices, event-driven architecture, RDBMS design, and shift-left quality automation with Playwright. Experienced in mentoring engineers and conducting technical interviews.</p>
+  <p class="summary">Full-stack developer with 4+ years building web and e-commerce platforms in TypeScript/Node.js, Vue 3/Nuxt, Next.js and Laravel. Most developers use Claude one chat at a time. I run it as a team: five Claude Code agents work in parallel on one 16 GB Mac and one Claude subscription, each taking a ticket through plan, build, tests, browser QA and code review on its own. Every mistake they make becomes a rule in a second brain, and a guard stops it from happening again, so after a few months I stopped monitoring them and now only sign off on what ships. I coded by hand long before AI tools, which is how I can tell when an agent gets something wrong.</p>
+  <div class="highlights">
+    <div class="hl"><b>580+</b><span>tickets handled since Apr 2026</span></div>
+    <div class="hl"><b>1,000+</b><span>merge requests merged</span></div>
+    <div class="hl"><b>4,340</b><span>mistakes turned into rules</span></div>
+    <div class="hl"><b>7,836</b><span>repeat mistakes stopped</span></div>
+  </div>
 
   <h2>Work Experience</h2>
 
@@ -54,18 +76,14 @@
     <div class="job-head"><span class="job-title">Full-Stack Developer</span><span class="dates">Apr 2026 – Present</span></div>
     <div class="company">Fincom Technologies · MallPlus Marketplace</div>
     <ul>
-      <li>Build and maintain <b>MallPlus</b>, a multi-vendor e-commerce marketplace on <b>Medusa v2</b> and the Mercur.js multi-vendor layer (Node.js/TypeScript), with Vue 3/Nuxt admin, seller-center, and storefront applications.</li>
-      <li>Engineered autonomous <b>AI-agent development pipelines</b> ("loop engineering") on <b>Claude Code</b> that take a ticket end-to-end: plan → implement → test → QA → automated review. I run <b>5+ pipelines in parallel</b>, limited only by machine RAM.</li>
-      <li>Built a <b>second brain</b> for the agents: 7,000+ markdown notes of decisions, verified results, and past mistakes that the pipeline checks before acting. A guard flags a known mistake before it repeats, and the agent asks me only when the answer is missing.</li>
-      <li>Handled <b>580+ tickets</b> since April 2026, with <b>540+ done or live in production</b> and <b>1,000+ merge requests</b> merged. The volume comes from small, scoped MRs. I set the design, review every diff, and own each merge.</li>
-      <li>Introduced AI-assisted development to the team and shared the workflow. The other developers now use it for their own work.</li>
-      <li>Shipped full-stack after-sales features: returns &amp; refunds, seller-dispute resolution, escrow, order fulfillment, and webhook-driven notifications between the marketplace and a <b>NestJS</b> ticketing service, with an outbox so no customer concern is lost or duplicated.</li>
-      <li>Built role-based access control and masked customer data with audited reveal for the customer support ticketing system.</li>
-      <li>Integrated <b>GCash</b> payments and multi-vendor commission, payout, and escrow flows, preserving financial integrity across buyer, seller, and platform.</li>
-      <li>Built browser-driven QA with <b>Playwright</b> that verifies each acceptance criterion and produces annotated video walkthroughs as release evidence.</li>
-      <li>Implemented an automated <b>GitLab merge-request review loop</b> that gates every change on a passing AI code review before human review, cutting reviewer load and defect leakage.</li>
-      <li>Built <b>n8n</b> automations that connect Jira, Google Sheets, Slack, and Telegram.</li>
-      <li>Deliver within a Jira/GitLab SCRUM pipeline with strict branch, QA, and code-review gates across local, dev, staging, UAT, and production environments.</li>
+      <li>Build <b>MallPlus</b>, a multi-vendor marketplace for the Philippines on <b>Medusa v2</b> and Mercur (Node.js/TypeScript), with Vue 3/Nuxt admin, seller center and storefront apps.</li>
+      <li>Designed an <b>AI agent workflow on Claude Code</b> that takes a ticket from plan to merge request: hardened acceptance criteria, phased build, tests, <b>Playwright</b> browser QA with a video walkthrough, and an automated review loop that runs until it approves.</li>
+      <li>Run <b>five agents in parallel</b>, each in its own git worktree, on one 16 GB Mac and one Claude subscription. RAM, CPU and subscription usage are the only limits on adding more.</li>
+      <li>Built the agents a <b>second brain</b> of 7,000+ notes (decisions, verified results, past mistakes). Every mistake becomes a rule, and a guard checks each step against them: <b>4,340 rules</b> so far and <b>7,836 repeats stopped</b> before they happened.</li>
+      <li>Handled <b>580+ tickets</b> since April 2026, with <b>540+ done or live in production</b> and <b>1,000+ merge requests</b> merged. MRs are small and scoped, and nothing merges without my review.</li>
+      <li>Shipped after-sales and money flows: returns and refunds, seller disputes, escrow, <b>GCash</b> payments, commission and payouts, keeping buyer, seller and platform balances consistent.</li>
+      <li>Built a <b>NestJS</b> customer support ticketing system with role-based access, SLAs, escalations and masked customer data with audited reveal, connected to the marketplace by webhooks and an outbox so no concern is lost or duplicated.</li>
+      <li>Built <b>n8n</b> automations across Jira, Google Sheets, Slack and Telegram, and introduced the AI workflow to the team, who now use it for their own work.</li>
     </ul>
   </div>
 
@@ -73,13 +91,11 @@
     <div class="job-head"><span class="job-title">Senior Full-Stack Developer (Tech Lead)</span><span class="dates">Feb 2024 – Apr 2026</span></div>
     <div class="company">Betrnk Tours · BGC, Taguig City</div>
     <ul>
-      <li>Developed full-stack applications using <b>Laravel</b> (backend) and <b>React/Next.js</b> (frontend), improving system scalability and reliability.</li>
-      <li>Designed and maintained relational database systems, improving data management and application performance.</li>
-      <li>Implemented multi-tenant, microservice architectures over HTTP APIs, <b>Apache Kafka</b>, and <b>RabbitMQ</b>, using the Saga pattern for distributed transactions and event-driven communication.</li>
-      <li>Built and maintained Kafka producers and consumers for asynchronous processing, service decoupling, and high-throughput data pipelines.</li>
-      <li>Introduced feature-flag strategies and idempotency techniques for consistent, reliable operations across distributed systems.</li>
-      <li>Created unit tests with <b>Pest</b> and end-to-end tests with <b>Playwright</b>, strengthening quality assurance.</li>
-      <li>Mentored and onboarded 5 developers; managed projects end-to-end with strong version-control practices; conducted 15+ technical interviews.</li>
+      <li>Built full-stack applications with <b>Laravel</b>/Filament and <b>Next.js</b>, and designed their relational databases.</li>
+      <li>Implemented multi-tenant microservices over HTTP APIs, <b>Apache Kafka</b> and <b>RabbitMQ</b>, using the Saga pattern for distributed transactions, plus feature flags and idempotency for reliable operations.</li>
+      <li>Wrote unit tests with <b>Pest</b> and end-to-end tests with <b>Playwright</b> across all systems.</li>
+      <li>Mentored and onboarded 5 developers, owned projects end to end, and ran 15+ technical interviews.</li>
+      <li class="projects">Projects: LINE marketing platform, company landing and booking system, casino cage system with live forex rates, e-wallet API, coupon and ads SaaS on microservices.</li>
     </ul>
   </div>
 
@@ -87,26 +103,29 @@
     <div class="job-head"><span class="job-title">Junior Full-Stack Developer</span><span class="dates">Jun 2022 – Feb 2024</span></div>
     <div class="company">Halcyon Agile</div>
     <ul>
-      <li>Collaborated on CMS, e-commerce, and service-marketplace websites using <b>ReactJS/Next.js</b>, <b>Node.js</b>, and <b>Laravel</b>.</li>
-      <li>Applied SCRUM Agile methodologies, delivering high-quality solutions and improving project timelines by ~15%.</li>
-      <li>Designed and maintained MySQL database structures for optimal performance on service-focused platforms.</li>
-      <li>Managed version control with Git, enabling seamless collaboration and integration across teams.</li>
+      <li>Built a learning management system, two e-commerce platforms and a multi-tenant SaaS platform with <b>Node.js</b>, <b>Next.js</b>, <b>Laravel</b>/Filament and Tailwind CSS.</li>
+      <li>Implemented the Saga pattern with idempotency on Kafka-based microservices across 5 services (inventory, CMS, users, payment, wallet).</li>
+      <li>Worked in SCRUM, improving delivery timelines by about 15%, and designed MySQL schemas for service-focused platforms.</li>
     </ul>
   </div>
 
+  <h2>Open-Source Projects</h2>
+  <div class="proj">
+    <div><div class="name"><a href="https://github.com/jeromejhipolito/merchantflow">MerchantFlow</a><span class="tests">331 tests</span></div><p>Cross-border e-commerce ops: saga orchestration, transactional outbox, HMAC webhooks, BullMQ.</p></div>
+    <div><div class="name"><a href="https://github.com/jeromejhipolito/flowboard">FlowBoard</a><span class="tests">202 tests</span></div><p>Real-time collaborative Kanban with Socket.IO, Redis pub-sub and role-based access.</p></div>
+    <div><div class="name"><a href="https://github.com/jeromejhipolito/ai-booking-agent">AI Booking Agent</a><span class="tests">139 live assertions</span></div><p>n8n salon booking agent where a Postgres constraint makes double bookings impossible.</p></div>
+    <div><div class="name"><a href="https://github.com/jeromejhipolito/booking-system">BookIt</a><span class="tests">130 tests</span></div><p>Booking system with CQRS command and query handlers and real-time availability.</p></div>
+  </div>
+
   <h2>Skills</h2>
-  <div class="skill-label">Languages</div>
-  <div class="chips"><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">SQL</span></div>
-  <div class="skill-label">Frameworks &amp; Platforms</div>
-  <div class="chips"><span class="chip">Node.js</span><span class="chip">Medusa v2</span><span class="chip">Vue 3 / Nuxt</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">Laravel</span></div>
-  <div class="skill-label">Architecture &amp; Data</div>
-  <div class="chips"><span class="chip">Microservices</span><span class="chip">Event-Driven (Kafka, RabbitMQ)</span><span class="chip">REST APIs &amp; Webhooks</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
   <div class="skill-label">AI &amp; Automation</div>
-  <div class="chips"><span class="chip">AI Agent Orchestration (Claude Code)</span><span class="chip">AI Memory / RAG</span><span class="chip">MCP</span><span class="chip">n8n</span><span class="chip">Automated Code Review</span></div>
-  <div class="skill-label">Quality</div>
-  <div class="chips"><span class="chip">Playwright / E2E</span><span class="chip">Pest</span><span class="chip">Vitest</span></div>
-  <div class="skill-label">Practices &amp; Tools</div>
-  <div class="chips"><span class="chip">Agile / SCRUM</span><span class="chip">Git / GitLab CI</span><span class="chip">Jira</span><span class="chip">Mentoring &amp; Tech Interviews</span></div>
+  <div class="chips"><span class="chip ai">Parallel AI agents (Claude Code)</span><span class="chip ai">Self-learning agent memory</span><span class="chip ai">MCP</span><span class="chip ai">Automated code review</span><span class="chip ai">n8n</span></div>
+  <div class="skill-label">Languages &amp; Frameworks</div>
+  <div class="chips"><span class="chip">TypeScript</span><span class="chip">PHP</span><span class="chip">SQL</span><span class="chip">Node.js</span><span class="chip">Medusa v2</span><span class="chip">NestJS</span><span class="chip">Vue 3 / Nuxt</span><span class="chip">React / Next.js</span><span class="chip">Laravel</span></div>
+  <div class="skill-label">Architecture &amp; Data</div>
+  <div class="chips"><span class="chip">Microservices</span><span class="chip">Kafka / RabbitMQ</span><span class="chip">Saga &amp; outbox</span><span class="chip">REST APIs &amp; webhooks</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
+  <div class="skill-label">Quality &amp; Practice</div>
+  <div class="chips"><span class="chip">Playwright E2E</span><span class="chip">Pest</span><span class="chip">Vitest</span><span class="chip">GitLab CI</span><span class="chip">Agile / SCRUM</span><span class="chip">Mentoring &amp; tech interviews</span></div>
 
   <div class="two">
     <div>
