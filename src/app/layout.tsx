@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Jerome Hipolito | Full Stack Engineer, AI Workflows with Claude Code & n8n',
   description:
-    'Senior Full Stack Developer specializing in distributed systems, microservices, and AI-assisted development. One-person team delivering architecture to E2E testing. Open to remote roles.',
+    'Full-stack developer in the Philippines who runs five AI coding pipelines in parallel and reviews every change. Node.js, Vue, Laravel, distributed systems. Open to remote roles.',
   openGraph: {
     title: 'Jerome Hipolito | Full Stack Engineer, AI Workflows',
     description:
