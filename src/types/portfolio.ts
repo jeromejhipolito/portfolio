@@ -88,6 +88,8 @@ export interface SiteConfig {
   location: string;
   contactEmail: string;
   resumeFile: string;
+  /** UK-format CV (A4, 2 pages); resumeFile is the 1-page US resume. */
+  cvFile?: string;
   resumeDate: string;
 }
 
