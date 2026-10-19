@@ -27,6 +27,7 @@ const WINDOWS = [
 
 const LINKS = [
   ['Pipelines', '#pipelines'],
+  ['Learning', '#learning'],
   ['Work', '#work'],
   ['About', '#about'],
   ['Contact', '#contact'],
@@ -167,8 +168,8 @@ export function Hero() {
 
           <motion.p {...rise(2)} className="mt-6 max-w-[38ch] text-lg leading-relaxed text-pretty text-[#a9b4c8] sm:text-xl">
             I&apos;m <span className="font-semibold text-white">Jerome Hipolito</span>, a full-stack developer in the
-            Philippines. Plan, build, test, browser QA and code review run in parallel, and I review every change they
-            ship.
+            Philippines. My AI loops plan, build, test, QA and review in parallel on their own, they learn from their
+            mistakes, and I sign off on what ships.
           </motion.p>
 
           <motion.div {...rise(3)} className="mt-9 flex flex-wrap gap-3">

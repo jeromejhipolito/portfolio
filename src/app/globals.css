@@ -80,6 +80,7 @@
   --animate-aurora: aurora 8s ease-in-out infinite alternate;
   --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
   --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
 
   /* Fonts */
   --font-sans: var(--font-geist-sans);
@@ -269,6 +270,10 @@ code, kbd, samp, pre {
 }
 
 /* === Magic UI keyframes === */
+@keyframes orbit {
+  0% { transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg)); }
+  100% { transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg)); }
+}
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(calc(-100% - var(--gap))); } }
 @keyframes marquee-vertical { from { transform: translateY(0); } to { transform: translateY(calc(-100% - var(--gap))); } }
 @keyframes aurora {
@@ -286,5 +291,7 @@ code, kbd, samp, pre {
   100% { transform: translateZ(0) rotate(360deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee, .animate-aurora, .animate-shimmer-slide, .animate-spin-around { animation: none !important; }
+  .animate-marquee, .animate-aurora, .animate-shimmer-slide, .animate-spin-around, .animate-orbit { animation: none !important; }
+  /* The orbit keyframe is what places each dot on its ring, so keep the resting position. */
+  .animate-orbit { transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg)); }
 }

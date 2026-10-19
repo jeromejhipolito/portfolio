@@ -1,5 +1,6 @@
 import { Hero, Nav } from '@/components/home/hero';
 import { Pipelines } from '@/components/home/pipelines';
+import { Learning } from '@/components/home/learning';
 import { Work } from '@/components/home/work';
 import { About, Toolbox, Contact, Footer } from '@/components/home/rest';
 import { ScrollProgress } from '@/components/magicui/scroll-progress';
@@ -14,6 +15,7 @@ export default function Home() {
         <main>
           <Hero />
           <Pipelines />
+          <Learning />
           <Work />
           <About />
           <Toolbox />
