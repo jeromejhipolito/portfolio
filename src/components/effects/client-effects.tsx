@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { usePathname } from 'next/navigation';
 
 const CustomCursor = dynamic(
   () => import('./custom-cursor').then((m) => m.CustomCursor),
@@ -8,5 +9,6 @@ const CustomCursor = dynamic(
 );
 
 export function ClientEffects() {
-  return <CustomCursor />;
+  // The homepage has its own design and keeps the system cursor.
+  return usePathname() === '/' ? null : <CustomCursor />;
 }
