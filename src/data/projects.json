@@ -35,7 +35,7 @@
         "alt": "BookIt homepage — search bar, category filters, and hero with demo mode banner"
       },
       {
-        "src": "/projects/bookeasy-browse.png",
+        "src": "/projects/bookeasy-browse-v2.png",
         "alt": "Browse services — category filter tabs, service cards with ratings, pricing, and Book Now buttons"
       },
       {
@@ -137,13 +137,17 @@
     ],
     "githubUrl": "https://github.com/Jeromescxz/money-management",
     "demoUrl": "https://money-management-ochre.vercel.app",
-    "screenshot": "/projects/money-management-dashboard.png",
+    "screenshot": "/projects/money-management-dashboard-wide.png",
     "outcomeMetric": "Laravel API + Next.js · PostgreSQL · Redis · Docker · 8 financial categories · PDF/Excel export",
     "featured": false,
     "claudeAssisted": true,
     "order": 3,
     "demoNote": "Full-stack with separate repos — Frontend (GitHub link above) and Backend API: github.com/jeromejhipolito/money-management-api (Laravel 13, PostgreSQL, Redis, Docker).",
     "gallery": [
+      {
+        "src": "/projects/money-management-dashboard-wide.png",
+        "alt": "Dashboard: net worth, income and expenses, overdue scheduled transactions, and category balances"
+      },
       {
         "src": "/projects/money-management-dashboard.png",
         "alt": "Dashboard — net worth, income/expense cards, category breakdown with charts, scheduled transactions, and recent activity"
