@@ -26,6 +26,7 @@ const WINDOWS = [
 ];
 
 const LINKS = [
+  ['Compare', '#compare'],
   ['Pipelines', '#pipelines'],
   ['Learning', '#learning'],
   ['Work', '#work'],
