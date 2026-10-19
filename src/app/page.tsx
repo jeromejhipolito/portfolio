@@ -1,33 +1,36 @@
-import { Nav } from '@/components/layout/nav';
-import { Hero } from '@/components/sections/hero';
-import { ProofBar } from '@/components/sections/proof-bar';
-import { Footer } from '@/components/layout/footer';
-import { Suspense } from 'react';
-import { Projects } from '@/components/sections/projects';
-import { Workflow } from '@/components/sections/workflow';
-import { Experience } from '@/components/sections/experience';
-import { Contact } from '@/components/sections/contact';
-import { VideoIntro } from '@/components/sections/video-intro';
+import { Libre_Franklin, Source_Serif_4 } from 'next/font/google';
+import { Hero } from '@/components/home/hero';
+import { Stats, About, Work, Toolbox } from '@/components/home/sections';
+import { How } from '@/components/home/how';
+import { Contact, Footer } from '@/components/home/contact';
+import { Reveal } from '@/components/home/reveal';
+import '@/components/home/home.css';
+
+const display = Libre_Franklin({ subsets: ['latin'], weight: '700', variable: '--font-display', display: 'swap' });
+const text = Source_Serif_4({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-text',
+  display: 'swap',
+});
 
 export default function Home() {
   return (
-    <>
-      <Nav />
+    <div className={`home ${display.variable} ${text.variable}`}>
+      {/* Hidden animation states apply only once this runs, so the page reads fine without JS. */}
+      <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       <Hero />
-      <VideoIntro />
-      <ProofBar />
-
-      <Experience />
-
-      <Suspense fallback={null}>
-        <Projects />
-      </Suspense>
-
-      <Workflow />
-
-      <Contact />
-
+      <main>
+        <Stats />
+        <How />
+        <About />
+        <Work />
+        <Toolbox />
+        <Contact />
+      </main>
       <Footer />
-    </>
+      <Reveal />
+    </div>
   );
 }
