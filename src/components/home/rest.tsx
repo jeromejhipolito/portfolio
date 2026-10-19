@@ -16,62 +16,42 @@ const roleLabel = (r: string) => r.replace(/\s*\(.*\)/, '').replace(/Full[- ]Sta
 const span = (e: { startDate: string; endDate?: string }) => `${e.startDate} – ${e.endDate ?? 'Present'}`;
 
 export function About() {
-  const handBuilt = experience
-    .filter((e) => e.endDate)
-    .flatMap((e) => (e.projects ?? []).map((p) => ({ ...p, at: e.company })))
-    .filter((p) => !/testing suite/i.test(p.name));
-
   return (
     <section id="about" className="relative bg-[#05070d] py-28 sm:py-36">
-      <div className="mx-auto grid max-w-[1280px] gap-16 px-5 sm:px-8 lg:grid-cols-[1fr_1.15fr]">
-        <div>
-          <BlurFade inView>
-            <p className="font-mono text-sm text-[#3dff9a]">Before AI</p>
-            <h2 className={H2}>I coded by hand first.</h2>
-            <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-[#c3cbdb]">
-              Before AI tools, I built Kafka microservices, saga rollbacks, an e-wallet API and a casino cage system
-              myself, and I led a team of five as tech lead. That is how I can tell when a pipeline gets something wrong,
-              and why I still read every change it makes.
-            </p>
-          </BlurFade>
+      <div className="mx-auto grid max-w-[1280px] items-start gap-16 px-5 sm:px-8 lg:grid-cols-[1fr_1fr]">
+        <BlurFade inView>
+          <p className="font-mono text-sm text-[#3dff9a]">Before AI</p>
+          <h2 className={H2}>I coded by hand first.</h2>
+          <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-pretty text-[#c3cbdb]">
+            Before AI tools, I built Kafka microservices, saga rollbacks, an e-wallet API and a casino cage system
+            myself, and I led a team of five as tech lead. That is how I can tell when a pipeline gets something wrong,
+            and why I still read every change it makes.
+          </p>
+          <a
+            href="#company-work"
+            className="mt-8 inline-block text-[15px] font-medium text-[#7eeeff] underline-offset-4 transition-colors duration-150 hover:text-white hover:underline"
+          >
+            See the company projects →
+          </a>
+        </BlurFade>
 
-          <ol className="relative mt-12 ml-2 list-none space-y-10 border-l border-white/10 p-0 pl-8">
-            {experience.map((e, i) => (
-              <li key={e.company} className="relative">
-                <BlurFade inView delay={0.08 * i}>
-                  <span
-                    className="absolute top-1.5 -left-[39px] h-3.5 w-3.5 rounded-full border-2 border-[#05070d]"
-                    style={{ background: ['#00d9ff', '#8b5cf6', '#3dff9a'][i % 3], boxShadow: `0 0 14px ${['#00d9ff', '#8b5cf6', '#3dff9a'][i % 3]}` }}
-                  />
-                  <p className="font-mono text-xs text-[#7f8aa3]">{span(e)}</p>
-                  <h3 className="mt-1 text-lg font-semibold text-white">
-                    {roleLabel(e.role)} <span className="font-normal text-[#a9b4c8]">at {e.company}</span>
-                  </h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#a9b4c8]">{e.outcomeMetric}</p>
-                </BlurFade>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div>
-          <BlurFade inView delay={0.1}>
-            <p className="text-sm text-[#a9b4c8]">Built before AI, by hand</p>
-          </BlurFade>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {handBuilt.map((p, i) => (
-              <BlurFade inView delay={0.04 * i} key={p.name}>
-                <MagicCard className="h-full rounded-xl" gradientFrom="#3dff9a" gradientTo="#00d9ff" gradientColor="#0f1a2c" gradientSize={180}>
-                  <div className="p-5">
-                    <h3 className="text-[15px] font-semibold text-white">{p.name}</h3>
-                    <p className="mt-1.5 line-clamp-3 text-[13.5px] leading-relaxed text-[#a9b4c8]">{p.description}</p>
-                    <p className="mt-3 font-mono text-[11px] text-[#7f8aa3]">{p.at}</p>
-                  </div>
-                </MagicCard>
+        <ol className="relative ml-2 list-none space-y-10 border-l border-white/10 p-0 pl-8 lg:mt-2">
+          {experience.map((e, i) => (
+            <li key={e.company} className="relative">
+              <BlurFade inView delay={0.08 * i}>
+                <span
+                  className="absolute top-1.5 -left-[39px] h-3.5 w-3.5 rounded-full border-2 border-[#05070d]"
+                  style={{ background: ['#00d9ff', '#8b5cf6', '#3dff9a'][i % 3], boxShadow: `0 0 14px ${['#00d9ff', '#8b5cf6', '#3dff9a'][i % 3]}` }}
+                />
+                <p className="font-mono text-xs text-[#7f8aa3]">{span(e)}</p>
+                <h3 className="mt-1 text-lg font-semibold text-white">
+                  {roleLabel(e.role)} <span className="font-normal text-[#a9b4c8]">at {e.company}</span>
+                </h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-[#a9b4c8]">{e.outcomeMetric}</p>
               </BlurFade>
-            ))}
-          </div>
-        </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

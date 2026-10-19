@@ -3,6 +3,7 @@ import { Compare } from '@/components/home/compare';
 import { Pipelines } from '@/components/home/pipelines';
 import { Learning } from '@/components/home/learning';
 import { Work } from '@/components/home/work';
+import { Confidential } from '@/components/home/confidential';
 import { About, Toolbox, Contact, Footer } from '@/components/home/rest';
 import { ScrollProgress } from '@/components/magicui/scroll-progress';
 import { MotionRoot } from '@/components/home/motion-root';
@@ -19,6 +20,7 @@ export default function Home() {
           <Pipelines />
           <Learning />
           <Work />
+          <Confidential />
           <About />
           <Toolbox />
           <Contact />
