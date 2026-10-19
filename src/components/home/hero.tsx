@@ -37,17 +37,18 @@ const LINKS = [
 // Fades a background layer out towards the bottom so it never ends on a hard line.
 const FADE = '[mask-image:linear-gradient(to_bottom,#000_70%,transparent)]';
 
-export function Nav() {
+// On other pages the section links point back to the homepage.
+export function Nav({ base = '' }: { base?: string }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.06] bg-[#05070d]/75 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="text-[15px] font-semibold tracking-tight text-white">
+        <a href={base || '#top'} className="text-[15px] font-semibold tracking-tight text-white">
           Jerome Hipolito<span className="text-[#00d9ff]">.</span>
         </a>
         <nav aria-label="Main" className="flex items-center gap-1 text-sm text-[#a9b4c8] sm:gap-2">
           {LINKS.map(([l, h]) => (
-            <a key={h} href={h} className="hidden rounded-md px-3 py-2 transition-colors duration-150 hover:text-white md:block">
+            <a key={h} href={base + h} className="hidden rounded-md px-3 py-2 transition-colors duration-150 hover:text-white md:block">
               {l}
             </a>
           ))}
@@ -89,7 +90,7 @@ export function Nav() {
             className="border-t border-white/[0.06] px-5 pb-4 md:hidden"
           >
             {LINKS.map(([l, h]) => (
-              <a key={h} href={h} onClick={() => setOpen(false)} className="block border-b border-white/[0.05] py-3.5 text-base text-white">
+              <a key={h} href={base + h} onClick={() => setOpen(false)} className="block border-b border-white/[0.05] py-3.5 text-base text-white">
                 {l}
               </a>
             ))}

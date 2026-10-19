@@ -15,33 +15,84 @@
       "Built n8n automations that connect Jira, Google Sheets, Slack and Telegram",
       "Introduced AI assisted development to the team and shared the workflow; the other developers now use it for their own work"
     ],
-    "techStack": ["Node.js", "TypeScript", "Medusa", "NestJS", "Nuxt", "Vue", "PostgreSQL", "Redis", "Claude Code", "n8n", "Playwright", "Docker", "GitLab CI"],
+    "techStack": [
+      "Node.js",
+      "TypeScript",
+      "Medusa",
+      "NestJS",
+      "Nuxt",
+      "Vue",
+      "PostgreSQL",
+      "Redis",
+      "Claude Code",
+      "n8n",
+      "Playwright",
+      "Docker",
+      "GitLab CI"
+    ],
     "outcomeMetric": "580+ tickets since Apr 2026 · 1,000+ merge requests merged · Team runs on my AI workflow",
     "projects": [
       {
+        "name": "MallPlus Marketplace",
+        "description": "Multi-vendor marketplace for the Philippines on Medusa v2 and Mercur. I build after-sales and money flows: returns and refunds, seller disputes, escrow, GCash payments, commission and payouts, plus the admin, seller and storefront apps.",
+        "techStack": [
+          "Medusa v2",
+          "Mercur",
+          "Node.js",
+          "Nuxt",
+          "PostgreSQL",
+          "GCash"
+        ]
+      },
+      {
         "name": "AI Development Workflow",
         "description": "Claude Code pipeline from plan to merge request: hardened acceptance criteria, phased build, tests, browser QA with per criterion screenshots, video walkthrough, and an automated review loop. Hooks block commit until QA proof exists.",
-        "techStack": ["Claude Code", "Playwright", "GitLab CI", "Hooks"]
+        "techStack": [
+          "Claude Code",
+          "Playwright",
+          "GitLab CI",
+          "Hooks"
+        ]
       },
       {
         "name": "Second Brain (AI Memory)",
         "description": "Markdown knowledge base with a hot session cache and semantic search, ranked so notes that were proven right come first. A guard surfaces past mistakes before they repeat.",
-        "techStack": ["Markdown", "Python", "Ollama", "Obsidian"]
+        "techStack": [
+          "Markdown",
+          "Python",
+          "Ollama",
+          "Obsidian"
+        ]
       },
       {
         "name": "Customer Support Ticketing System",
         "description": "Platform agnostic ticketing for support agents: role based access, SLAs, escalations and child cases, email threading, and masked customer data with audit logs.",
-        "techStack": ["NestJS", "Nuxt", "PostgreSQL", "Redis"]
+        "techStack": [
+          "NestJS",
+          "Nuxt",
+          "PostgreSQL",
+          "Redis"
+        ]
       },
       {
         "name": "Marketplace to Ticketing Integration",
         "description": "Webhooks plus an outbox so every buyer and seller concern reaches the ticketing system exactly once, even when a service is down.",
-        "techStack": ["Medusa", "Node.js", "Webhooks", "PostgreSQL"]
+        "techStack": [
+          "Medusa",
+          "Node.js",
+          "Webhooks",
+          "PostgreSQL"
+        ]
       },
       {
         "name": "n8n Automations",
         "description": "Workflows that connect Jira, Google Sheets, Slack and Telegram, so repeated work runs by itself and people only get pinged when needed.",
-        "techStack": ["n8n", "Jira API", "Google Sheets API", "Telegram Bot API"]
+        "techStack": [
+          "n8n",
+          "Jira API",
+          "Google Sheets API",
+          "Telegram Bot API"
+        ]
       }
     ]
   },
@@ -62,38 +113,82 @@
       "Managed projects end-to-end, overseeing repository management and enforcing version control best practices",
       "Conducted 15+ technical interviews to streamline the recruitment process"
     ],
-    "techStack": ["Laravel", "Filament", "Next.js", "PHP", "MySQL", "Apache Kafka", "RabbitMQ", "Microservices", "Playwright", "Pest", "Docker", "LINE API"],
+    "techStack": [
+      "Laravel",
+      "Filament",
+      "Next.js",
+      "PHP",
+      "MySQL",
+      "Apache Kafka",
+      "RabbitMQ",
+      "Microservices",
+      "Playwright",
+      "Pest",
+      "Docker",
+      "LINE API"
+    ],
     "outcomeMetric": "Tech Lead · 6 production systems · Mentored 5 devs · 15+ interviews",
     "projects": [
       {
         "name": "Marketing Tool (LINE Integration)",
         "description": "Multi-tenant marketing platform integrated with LINE app — broadcasting, auto-reply, coupons, and referral system. Built with Filament admin panel.",
-        "techStack": ["Filament", "Laravel", "LINE API", "Multi-tenancy"]
+        "techStack": [
+          "Filament",
+          "Laravel",
+          "LINE API",
+          "Multi-tenancy"
+        ]
       },
       {
         "name": "Company Landing & Booking System",
         "description": "Corporate website with integrated booking system and content management for tour packages",
-        "techStack": ["Next.js", "Filament", "Laravel", "MySQL"]
+        "techStack": [
+          "Next.js",
+          "Filament",
+          "Laravel",
+          "MySQL"
+        ]
       },
       {
         "name": "Casino Cage System",
         "description": "Inventory management system for casino chips and money with real-time forex exchange rate integration",
-        "techStack": ["Next.js", "Laravel", "MySQL", "Forex API"]
+        "techStack": [
+          "Next.js",
+          "Laravel",
+          "MySQL",
+          "Forex API"
+        ]
       },
       {
         "name": "E-Wallet System",
         "description": "Backend API for mobile wallet — send/receive, deposit, withdrawal, currency exchange, and secure money hashing. Separate mobile app team consumed the API.",
-        "techStack": ["Laravel", "MySQL", "Payment Gateway", "REST API"]
+        "techStack": [
+          "Laravel",
+          "MySQL",
+          "Payment Gateway",
+          "REST API"
+        ]
       },
       {
         "name": "Coupon & Ads Management System",
         "description": "SaaS platform with multi-tenancy for coupon management, ad campaigns, scheduling, analytics, and subscription billing via microservices",
-        "techStack": ["Next.js", "Laravel", "RabbitMQ", "Microservices", "Saga Pattern", "Multi-tenancy"]
+        "techStack": [
+          "Next.js",
+          "Laravel",
+          "RabbitMQ",
+          "Microservices",
+          "Saga Pattern",
+          "Multi-tenancy"
+        ]
       },
       {
         "name": "E2E Testing Suite",
         "description": "Comprehensive test automation with Pest unit tests and Playwright E2E coverage across all systems",
-        "techStack": ["Playwright", "Pest", "PHP"]
+        "techStack": [
+          "Playwright",
+          "Pest",
+          "PHP"
+        ]
       }
     ]
   },
@@ -111,28 +206,65 @@
       "Designed and maintained MySQL database structures for service-focused platforms",
       "Managed version control and code tracking using Git across development teams"
     ],
-    "techStack": ["Node.js", "Next.js", "Laravel", "Filament", "Tailwind CSS", "MySQL", "Kafka", "Microservices", "Saga Pattern", "Git"],
+    "techStack": [
+      "Node.js",
+      "Next.js",
+      "Laravel",
+      "Filament",
+      "Tailwind CSS",
+      "MySQL",
+      "Kafka",
+      "Microservices",
+      "Saga Pattern",
+      "Git"
+    ],
     "outcomeMetric": "4 production systems · Kafka microservices (5 services) · Multi-tenant SaaS",
     "projects": [
       {
         "name": "Microservices eCommerce Platform",
         "description": "Kafka-based microservices with 5 services — inventory, CMS, user management, payment, wallet — with Saga pattern, idempotency, multi-tenancy, and third-party product integration",
-        "techStack": ["Node.js", "Next.js", "Tailwind CSS", "Kafka", "Microservices", "Multi-tenancy"]
+        "techStack": [
+          "Node.js",
+          "Next.js",
+          "Tailwind CSS",
+          "Kafka",
+          "Microservices",
+          "Multi-tenancy"
+        ]
       },
       {
         "name": "Multi-Tenant SaaS Platform",
         "description": "Integrated platform combining content management, learning management, and eCommerce with multi-tenancy, subscription billing, payment gateway, and analytics. Filament admin panel, Next.js client.",
-        "techStack": ["Filament", "Laravel", "Next.js", "Tailwind CSS", "Multi-tenancy", "Analytics"]
+        "techStack": [
+          "Filament",
+          "Laravel",
+          "Next.js",
+          "Tailwind CSS",
+          "Multi-tenancy",
+          "Analytics"
+        ]
       },
       {
         "name": "Learning Management System",
         "description": "Educational platform with course management, progress tracking, and content delivery. Filament admin, Next.js client.",
-        "techStack": ["Filament", "Laravel", "Next.js", "Tailwind CSS", "MySQL"]
+        "techStack": [
+          "Filament",
+          "Laravel",
+          "Next.js",
+          "Tailwind CSS",
+          "MySQL"
+        ]
       },
       {
         "name": "eCommerce Platform (Monolith)",
         "description": "Full-featured online store with payment gateway integration, subscription management, and analytics. Monolith architecture.",
-        "techStack": ["Node.js", "Next.js", "Tailwind CSS", "MySQL", "Payment Gateway"]
+        "techStack": [
+          "Node.js",
+          "Next.js",
+          "Tailwind CSS",
+          "MySQL",
+          "Payment Gateway"
+        ]
       }
     ]
   }

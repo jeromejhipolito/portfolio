@@ -9,6 +9,6 @@ const CustomCursor = dynamic(
 );
 
 export function ClientEffects() {
-  // The homepage has its own design and keeps the system cursor.
-  return usePathname() === '/' ? null : <CustomCursor />;
+  // The homepage and project pages use the new design with the system cursor; only admin keeps the old trail.
+  return usePathname()?.startsWith('/admin') ? <CustomCursor /> : null;
 }
