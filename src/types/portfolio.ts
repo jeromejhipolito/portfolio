@@ -21,6 +21,8 @@ export interface Project {
   codeDiff?: string;
   gallery?: Array<{ src: string; alt: string }>;
   demoNote?: string;
+  // Short badge that puts a project in the spotlight on the home list.
+  highlight?: string;
 }
 
 export interface EmployerProject {

@@ -26,16 +26,24 @@ const Node = forwardRef<HTMLDivElement, { label: string; sub: string; tone?: str
 Node.displayName = 'Node';
 
 const FLOW = [
+  ['Erica', 'AI secretary', '#36d6ff'],
   ['Ticket', 'Jira', '#a9b4c8'],
   ['Plan', 'criteria', '#00d9ff'],
   ['Build', 'worktree', '#00d9ff'],
   ['Test', 'vitest', '#3dff9a'],
   ['QA', 'Playwright', '#3dff9a'],
   ['Review', 'loop', '#8b5cf6'],
-  ['Merge request', 'human merges', '#ff79c6'],
+  ['Merge request', 'human merges', '#ffb020'],
+  ['Harvest', 'brain notes', '#ff79c6'],
 ] as const;
 
 const STAGES = [
+  {
+    t: 'It can start with Erica',
+    d: 'I tell Erica, my AI secretary, what to work on, in a meeting or a message. She hands it to a free pipeline and reports back when it is done.',
+    tag: 'Voice',
+    c: '#36d6ff',
+  },
   {
     t: 'First, the plan',
     d: 'It reads the ticket, sharpens the acceptance criteria, and checks the second brain for mistakes made before.',
@@ -67,15 +75,22 @@ const STAGES = [
     c: '#8b5cf6',
   },
   {
-    t: 'It remembers',
-    d: 'Every mistake becomes a note with its fix, so no pipeline repeats it. Over 7,000 notes so far.',
-    tag: 'Brain',
+    t: 'A person merges',
+    d: 'The pipeline opens the merge request and stops there. Nothing merges until a person has read it.',
+    tag: 'Merge request',
+    c: '#ffb020',
+  },
+  {
+    t: 'Then the harvest',
+    d: 'What the run learned goes into the second brain: every mistake with its fix, every result that worked. The next run starts smarter. Over 7,000 notes so far.',
+    tag: 'Harvest',
     c: '#ff79c6',
   },
 ];
 
 const LOG: [string, string][] = [
   ['#7eeeff', '$ pipeline run --ticket refund-approval'],
+  ['#36d6ff', 'erica: task from the 10:15 Meet, "ship the refund approval"'],
   ['#a9b4c8', 'brain: 3 related notes, 1 past mistake loaded'],
   ['#3dff9a', '✔ plan: 4 acceptance criteria hardened'],
   ['#3dff9a', '✔ build: phase 1/4 approval matrix'],
@@ -85,12 +100,15 @@ const LOG: [string, string][] = [
   ['#febc2e', '◐ review round 1: 2 findings'],
   ['#a9b4c8', '  fixing: raw query param skipped validation'],
   ['#3dff9a', '✔ review round 2: approved'],
-  ['#ff79c6', '→ merge request opened, waiting for a human'],
+  ['#ffb020', '→ merge request opened, waiting for a human'],
+  ['#ff79c6', '✔ harvest: 1 mistake + 2 results saved to the brain'],
+  ['#36d6ff', 'erica: told Jerome in the Meet'],
   ['#7f8aa3', 'done in 41m · 4 other pipelines still running'],
 ];
 
 export function Pipelines() {
   const box = useRef<HTMLDivElement>(null);
+  const voice = useRef<HTMLDivElement>(null);
   const t = useRef<HTMLDivElement>(null);
   const plan = useRef<HTMLDivElement>(null);
   const build = useRef<HTMLDivElement>(null);
@@ -98,6 +116,7 @@ export function Pipelines() {
   const qa = useRef<HTMLDivElement>(null);
   const review = useRef<HTMLDivElement>(null);
   const mr = useRef<HTMLDivElement>(null);
+  const harvest = useRef<HTMLDivElement>(null);
   const brain = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const beam = {
@@ -115,11 +134,12 @@ export function Pipelines() {
         <BlurFade inView>
           <p className="font-mono text-sm text-[#00d9ff]">How a ticket ships</p>
           <h2 className="mt-3 max-w-[18ch] text-[clamp(2.2rem,4.6vw,3.8rem)] leading-[1.05] font-bold tracking-[-0.035em] text-balance text-white">
-            From ticket to merge request, five at a time.
+            From a spoken ask to a merge request, five at a time.
           </h2>
           <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-pretty text-[#a9b4c8]">
             Each pipeline runs the same gated steps in its own workspace. Nothing moves forward until the step before it
-            passes, and nothing merges without a person.
+            passes, and nothing merges without a person. Then every run is harvested into the brain, so the next one starts
+            smarter.
           </p>
         </BlurFade>
 
@@ -134,7 +154,7 @@ export function Pipelines() {
               </li>
             ))}
             <li className="relative mt-2 rounded-xl border border-[#ff79c6]/30 bg-[#ff79c6]/[0.06] px-4 py-3 text-sm text-[#f6c6e4]">
-              The second brain (7,000+ notes) feeds the plan and learns from every review.
+              The second brain (7,000+ notes) feeds the plan and grows with every harvest.
             </li>
           </ol>
         </BlurFade>
@@ -143,30 +163,34 @@ export function Pipelines() {
         <BlurFade inView delay={0.1} className="hidden sm:block">
           <div
             ref={box}
-            className="relative mt-14 rounded-3xl border border-white/[0.07] bg-[#0a0f1d]/70 px-3 pt-10 pb-24 sm:px-8 sm:pb-28"
+            className="relative mt-14 rounded-3xl border border-white/[0.07] bg-[#0a0f1d]/70 px-3 pt-10 pb-24 sm:px-4 lg:px-8 sm:pb-28"
           >
-            <div className="grid grid-cols-7 gap-1.5 sm:gap-4">
-              <Node ref={t} label={FLOW[0][0]} sub={FLOW[0][1]} tone={FLOW[0][2]} />
-              <Node ref={plan} label={FLOW[1][0]} sub={FLOW[1][1]} tone={FLOW[1][2]} />
-              <Node ref={build} label={FLOW[2][0]} sub={FLOW[2][1]} tone={FLOW[2][2]} />
-              <Node ref={test} label={FLOW[3][0]} sub={FLOW[3][1]} tone={FLOW[3][2]} />
-              <Node ref={qa} label={FLOW[4][0]} sub={FLOW[4][1]} tone={FLOW[4][2]} />
-              <Node ref={review} label={FLOW[5][0]} sub={FLOW[5][1]} tone={FLOW[5][2]} />
-              <Node ref={mr} label="Merge" sub={FLOW[6][1]} tone={FLOW[6][2]} />
+            <div className="grid grid-cols-9 gap-1.5 lg:gap-4">
+              <Node ref={voice} label={FLOW[0][0]} sub={FLOW[0][1]} tone={FLOW[0][2]} />
+              <Node ref={t} label={FLOW[1][0]} sub={FLOW[1][1]} tone={FLOW[1][2]} />
+              <Node ref={plan} label={FLOW[2][0]} sub={FLOW[2][1]} tone={FLOW[2][2]} />
+              <Node ref={build} label={FLOW[3][0]} sub={FLOW[3][1]} tone={FLOW[3][2]} />
+              <Node ref={test} label={FLOW[4][0]} sub={FLOW[4][1]} tone={FLOW[4][2]} />
+              <Node ref={qa} label={FLOW[5][0]} sub={FLOW[5][1]} tone={FLOW[5][2]} />
+              <Node ref={review} label={FLOW[6][0]} sub={FLOW[6][1]} tone={FLOW[6][2]} />
+              <Node ref={mr} label="Merge" sub={FLOW[7][1]} tone={FLOW[7][2]} />
+              <Node ref={harvest} label={FLOW[8][0]} sub={FLOW[8][1]} tone={FLOW[8][2]} />
             </div>
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
               <Node ref={brain} label="Second brain" sub="7,000+ notes" tone="#ff79c6" className="px-5" />
             </div>
             {!reduce && (
               <>
-            <AnimatedBeam {...beam} fromRef={t} toRef={plan} delay={0} />
-            <AnimatedBeam {...beam} fromRef={plan} toRef={build} delay={0.35} />
-            <AnimatedBeam {...beam} fromRef={build} toRef={test} delay={0.7} />
-            <AnimatedBeam {...beam} fromRef={test} toRef={qa} delay={1.05} />
-            <AnimatedBeam {...beam} fromRef={qa} toRef={review} delay={1.4} />
-            <AnimatedBeam {...beam} fromRef={review} toRef={mr} delay={1.75} />
+            <AnimatedBeam {...beam} fromRef={voice} toRef={t} delay={0} />
+            <AnimatedBeam {...beam} fromRef={t} toRef={plan} delay={0.3} />
+            <AnimatedBeam {...beam} fromRef={plan} toRef={build} delay={0.6} />
+            <AnimatedBeam {...beam} fromRef={build} toRef={test} delay={0.9} />
+            <AnimatedBeam {...beam} fromRef={test} toRef={qa} delay={1.2} />
+            <AnimatedBeam {...beam} fromRef={qa} toRef={review} delay={1.5} />
+            <AnimatedBeam {...beam} fromRef={review} toRef={mr} delay={1.8} />
+            <AnimatedBeam {...beam} fromRef={mr} toRef={harvest} delay={2.1} />
+            <AnimatedBeam containerRef={box} fromRef={harvest} toRef={brain} curvature={-60} duration={4} delay={2.4} gradientStartColor="#ff79c6" gradientStopColor="#ff79c6" pathOpacity={0.06} />
             <AnimatedBeam containerRef={box} fromRef={brain} toRef={plan} curvature={-60} duration={4} gradientStartColor="#ff79c6" gradientStopColor="#00d9ff" pathOpacity={0.06} />
-            <AnimatedBeam containerRef={box} fromRef={review} toRef={brain} curvature={-60} duration={4} delay={1.5} gradientStartColor="#8b5cf6" gradientStopColor="#ff79c6" pathOpacity={0.06} />
               </>
             )}
           </div>
