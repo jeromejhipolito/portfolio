@@ -125,14 +125,16 @@ export default async function ProjectPage({ params }: Props) {
                       Try the live demo →
                     </a>
                   )}
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-xl border border-white/15 bg-white/[0.04] px-6 py-3.5 text-base font-semibold text-white transition-[background-color,transform] duration-150 ease-out hover:bg-white/[0.09] active:scale-[0.97]"
-                  >
-                    Source on GitHub
-                  </a>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-xl border border-white/15 bg-white/[0.04] px-6 py-3.5 text-base font-semibold text-white transition-[background-color,transform] duration-150 ease-out hover:bg-white/[0.09] active:scale-[0.97]"
+                    >
+                      Source on GitHub
+                    </a>
+                  )}
                 </div>
               </BlurFade>
 
@@ -149,7 +151,9 @@ export default async function ProjectPage({ params }: Props) {
                     <p className="font-semibold text-[#ffe2a1]">Showcase project</p>
                     <p className="mt-1">
                       Built to show architecture, testing and code quality, not as a finished
-                      product. It runs on demo data, so you may hit rough edges.
+                      product.
+                      {/* No public repo = a private tool I use every day, not a demo-data build. */}
+                      {project.githubUrl && ' It runs on demo data, so you may hit rough edges.'}
                       {extraNote.split(/(github\.com\/[\w./-]+)/).map((part, k) =>
                         /^github\.com\//.test(part) ? (
                           <a

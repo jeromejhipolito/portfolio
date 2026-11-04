@@ -49,9 +49,11 @@ function ProjectRow({ p, i }: { p: Project; i: number }) {
               Live demo
             </a>
           )}
-          <a href={p.githubUrl} target="_blank" rel="noreferrer" className="py-3 text-sm font-medium text-[#a9b4c8] underline-offset-4 transition-colors duration-150 hover:text-white hover:underline">
-            Source on GitHub
-          </a>
+          {p.githubUrl && (
+            <a href={p.githubUrl} target="_blank" rel="noreferrer" className="py-3 text-sm font-medium text-[#a9b4c8] underline-offset-4 transition-colors duration-150 hover:text-white hover:underline">
+              Source on GitHub
+            </a>
+          )}
         </div>
       </BlurFade>
     </article>
