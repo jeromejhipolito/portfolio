@@ -22,6 +22,15 @@ function ProjectRow({ p, i }: { p: Project; i: number }) {
       </BlurFade>
 
       <BlurFade inView delay={0.1} className={cn('min-w-0', flip && 'lg:order-1')}>
+        {p.highlight && (
+          <p
+            className="mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs"
+            style={{ color: c, borderColor: `${c}55`, background: `${c}14`, boxShadow: `0 0 22px ${c}22` }}
+          >
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full" style={{ background: c, boxShadow: `0 0 8px ${c}` }} />
+            {p.highlight}
+          </p>
+        )}
         <p className="font-mono text-sm" style={{ color: c }}>
           {p.testCount ? `${p.testCount} tests` : 'Full-stack'} · {p.techStack.slice(0, 2).join(' + ')}
         </p>

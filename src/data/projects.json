@@ -265,40 +265,31 @@
   },
   {
     "slug": "erica-voice-assistant",
-    "name": "Erica — AI voice assistant for Google Meet",
-    "problem": "I spend my day in calls while four Claude Code sessions work on tickets in the background. Checking on them, reading Slack, Gmail and Jira, and handing off the next task meant leaving the call to type. I wanted to just say it out loud, in the meeting I was already in.",
-    "solution": "Erica joins Google Meet as her own signed-in guest. Gemini Live is her voice: she hears the call and answers small things herself in Taglish. Anything about my work goes to Claude Code as her brain, which reads the code, drives my tmux Claude sessions and answers back through her. A voiceprint and owner check mean only I can send work to a session. Her camera is a canvas HUD whose ring shows what she is doing right now: standby, listening, speaking, or a yellow arc while Claude is busy.",
-    "impact": "I run my day from the call: ask where my tickets are, relay a fix to a free session, hear new Slack, Gmail and Jira messages as they land. Quick lookups such as notifications and session status answer locally in about 2 seconds, instead of the 30 to 75 seconds a full Claude round trip takes. I still add to it every day.",
+    "name": "Erica — my AI secretary",
+    "problem": "I wanted a secretary, not another app. Someone I can just tell what to do, who then does it herself: keeps up with my messages and tickets, hands work to my AI coding agents, and keeps going when I am in a call, offline or asleep.",
+    "solution": "Erica is my personal AI assistant. I tell her what to do and she does it, with access to everything the work needs: my messages, my tickets and my AI coding agents. She can run 24/7 with no help from me, watching my Slack, Google Chat and Jira and acting on what comes in. She answers messages for me in Google Chat and Slack and comments on Jira tickets. In a Google Meet she joins as her own guest, talks with me in English or Taglish, answers questions about my work, hands tasks to my agents, reads out new messages, and can share her screen to present. Only I can give her work. Her camera shows a live status ring, so everyone in the call can see whether she is on standby, listening, speaking or busy.",
+    "impact": "Work keeps moving without me: messages get answered, tickets get updated and tasks reach a free agent, in a call or long after I log off. In meetings I run my day by voice and quick questions come back in seconds. She is now an everyday part of how I work, and I still add to her every day.",
     "framework": "other",
     "techStack": [
-      "Gemini Live",
-      "Claude Code",
-      "Python",
-      "Playwright",
-      "Canvas 2D",
-      "WebRTC",
-      "Groq Whisper",
-      "Speaker voiceprint (ONNX)",
-      "Docker",
-      "tmux"
+      "AI voice",
+      "Automation"
     ],
     "githubUrl": "",
     "demoVideo": "/projects/erica-intro.mp4",
     "screenshot": "/projects/erica-hud-relay.png",
-    "outcomeMetric": "4 Claude sessions driven by voice · Gmail, Slack and Jira read aloud · ~2 s local lookups vs 30–75 s · 108 commits in her first 3 days",
+    "outcomeMetric": "My AI secretary, running 24/7 · Answers my Slack and Google Chat · Comments on Jira tickets · Hands tasks to my AI agents · Joins and presents in my calls",
     "featured": true,
-    "claudeAssisted": true,
-    "order": 6,
-    "codeDiff": "+ // Her camera is a canvas. The status line under the ring is one priority chain,\n+ // so whatever matters most right now is what you read.\n+ const state = flash === 'lost' ? 'NOT HEARING YOU · WAIT'\n+     : flash === 'stop' ? 'HALTED'\n+     : remember ? 'SYNCING MEMORY…'\n+     : sleep ? \"STANDBY · SAY 'HEY ERICA'\"\n+     : busy ? 'PROCESSING' + (badge ? ' · ' + badge + ' OPEN' : '')\n+     : talk > 0 ? 'SPEAKING'\n+     : think ? 'ANALYZING'\n+     : 'ONLINE';",
+    "claudeAssisted": false,
+    "order": 0,
     "demoNote": "The source is private for now. I can demo Erica live in a call.",
     "gallery": [
       {
         "src": "/projects/erica-intro.mp4",
-        "alt": "Erica introduces herself and walks through a normal day: waking in a Meet, answering a question, relaying a fix to a Claude session, reading out a Slack message"
+        "alt": "Erica introduces herself as Jerome's AI secretary and walks through a day: answering a question, handing a fix to an agent, replying to messages, commenting on a ticket, sharing her screen and watching his messages after hours"
       },
       {
         "src": "/projects/erica-hud-relay.png",
-        "alt": "Claude is working: the yellow arc runs and session 2 shows ACTIVE"
+        "alt": "Busy on a task: the yellow arc runs and agent 2 shows ACTIVE"
       },
       {
         "src": "/projects/erica-hud-standby.png",
@@ -306,8 +297,9 @@
       },
       {
         "src": "/projects/erica-hud-notification.png",
-        "alt": "A new Slack message lights the Slack chip and she reads it out"
+        "alt": "A new message lights up its chip and she reads it out"
       }
-    ]
+    ],
+    "highlight": "New · my AI secretary, part of my daily workflow"
   }
 ]
