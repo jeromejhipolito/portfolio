@@ -17,7 +17,14 @@ const DIMS: Record<string, [number, number]> = {
   '/projects/money-management-scheduled.png': [1520, 948],
   '/projects/money-management-transactions.png': [1520, 1142],
   '/projects/money-management-wallet.png': [1520, 979],
+  '/projects/erica-intro.mp4': [1280, 720],
+  '/projects/erica-hud-relay.png': [1280, 720],
+  '/projects/erica-hud-standby.png': [1280, 720],
+  '/projects/erica-hud-notification.png': [1280, 720],
 };
+const isVideo = (src: string) => src.endsWith('.mp4');
+// Poster frame for a video shot: same name with -poster.jpg.
+const posterOf = (src: string) => src.replace(/\.mp4$/, '-poster.jpg');
 // Floor at 4:5 so a very tall page still shows large enough to read.
 const ratioOf = (src: string) => {
   const [w, h] = DIMS[src] ?? [1440, 900];
@@ -30,6 +37,7 @@ export const HOST: Record<string, string> = {
   'money-management-app': 'trackmoney.app',
   'merchantflow-ecommerce-ops': 'merchantflow.app',
   'ai-booking-agent': 'telegram · salon agent',
+  'erica-voice-assistant': 'meet.google.com · erica',
 };
 
 // A browser window that shows each screenshot whole at its own shape, with thumbnails to switch screens.
@@ -99,7 +107,19 @@ export function ProjectGallery({
                   transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
                   className="absolute inset-0"
                 >
-                  <Image src={shot.src} alt={shot.alt} fill sizes={sizes} priority={priority} className="object-contain" />
+                  {isVideo(shot.src) ? (
+                    <video
+                      src={shot.src}
+                      poster={posterOf(shot.src)}
+                      controls
+                      playsInline
+                      preload="none"
+                      aria-label={shot.alt}
+                      className="h-full w-full object-contain"
+                    />
+                  ) : (
+                    <Image src={shot.src} alt={shot.alt} fill sizes={sizes} priority={priority} className="object-contain" />
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -124,7 +144,12 @@ export function ProjectGallery({
               )}
               style={k === on ? { boxShadow: `0 0 0 2px ${accent}` } : undefined}
             >
-              <Image src={s.src} alt="" fill sizes="96px" className="object-cover object-top" />
+              <Image src={isVideo(s.src) ? posterOf(s.src) : s.src} alt="" fill sizes="96px" className="object-cover object-top" />
+              {isVideo(s.src) && (
+                <span aria-hidden className="absolute inset-0 grid place-items-center bg-black/30 text-lg text-white">
+                  ▶
+                </span>
+              )}
             </button>
           ))}
         </div>

@@ -262,5 +262,52 @@
         "alt": "The three layers, the database constraints, and the verification suite results"
       }
     ]
+  },
+  {
+    "slug": "erica-voice-assistant",
+    "name": "Erica — AI voice assistant for Google Meet",
+    "problem": "I spend my day in calls while four Claude Code sessions work on tickets in the background. Checking on them, reading Slack, Gmail and Jira, and handing off the next task meant leaving the call to type. I wanted to just say it out loud, in the meeting I was already in.",
+    "solution": "Erica joins Google Meet as her own signed-in guest. Gemini Live is her voice: she hears the call and answers small things herself in Taglish. Anything about my work goes to Claude Code as her brain, which reads the code, drives my tmux Claude sessions and answers back through her. A voiceprint and owner check mean only I can send work to a session. Her camera is a canvas HUD whose ring shows what she is doing right now: standby, listening, speaking, or a yellow arc while Claude is busy.",
+    "impact": "I run my day from the call: ask where my tickets are, relay a fix to a free session, hear new Slack, Gmail and Jira messages as they land. Quick lookups such as notifications and session status answer locally in about 2 seconds, instead of the 30 to 75 seconds a full Claude round trip takes. I still add to it every day.",
+    "framework": "other",
+    "techStack": [
+      "Gemini Live",
+      "Claude Code",
+      "Python",
+      "Playwright",
+      "Canvas 2D",
+      "WebRTC",
+      "Groq Whisper",
+      "Speaker voiceprint (ONNX)",
+      "Docker",
+      "tmux"
+    ],
+    "githubUrl": "",
+    "demoVideo": "/projects/erica-intro.mp4",
+    "screenshot": "/projects/erica-hud-relay.png",
+    "outcomeMetric": "4 Claude sessions driven by voice · Gmail, Slack and Jira read aloud · ~2 s local lookups vs 30–75 s · 108 commits in her first 3 days",
+    "featured": true,
+    "claudeAssisted": true,
+    "order": 6,
+    "codeDiff": "+ // Her camera is a canvas. The status line under the ring is one priority chain,\n+ // so whatever matters most right now is what you read.\n+ const state = flash === 'lost' ? 'NOT HEARING YOU · WAIT'\n+     : flash === 'stop' ? 'HALTED'\n+     : remember ? 'SYNCING MEMORY…'\n+     : sleep ? \"STANDBY · SAY 'HEY ERICA'\"\n+     : busy ? 'PROCESSING' + (badge ? ' · ' + badge + ' OPEN' : '')\n+     : talk > 0 ? 'SPEAKING'\n+     : think ? 'ANALYZING'\n+     : 'ONLINE';",
+    "demoNote": "The source is private for now. I can demo Erica live in a call.",
+    "gallery": [
+      {
+        "src": "/projects/erica-intro.mp4",
+        "alt": "Erica introduces herself and walks through a normal day: waking in a Meet, answering a question, relaying a fix to a Claude session, reading out a Slack message"
+      },
+      {
+        "src": "/projects/erica-hud-relay.png",
+        "alt": "Claude is working: the yellow arc runs and session 2 shows ACTIVE"
+      },
+      {
+        "src": "/projects/erica-hud-standby.png",
+        "alt": "Standby: the ring dims until someone says 'Hey Erica'"
+      },
+      {
+        "src": "/projects/erica-hud-notification.png",
+        "alt": "A new Slack message lights the Slack chip and she reads it out"
+      }
+    ]
   }
 ]
