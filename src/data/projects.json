@@ -301,5 +301,38 @@
       }
     ],
     "highlight": "New · my AI secretary, part of my daily workflow"
+  },
+  {
+    "slug": "handsoff-agent-orchestrator",
+    "name": "handsoff — my AI agent control room",
+    "problem": "I run several AI coding agents at once. Handing each one its work, keeping them on a process I trust, and noticing when one is stuck or needs a decision from me was turning into a full-time job of its own.",
+    "solution": "handsoff is where I design how work gets done and then hand it off. I draw a workflow as steps on a canvas, with branches, loops and a point where a person signs off. I send a task to an agent on one of my machines and it follows that workflow step by step. A Live page shows every running session side by side as it works, with a lineup of what is running now and what is next, so I can step in and type into any session when it needs me. My task list keeps track of everything I have asked for and where each one stands.",
+    "impact": "Several pieces of work move at the same time while I watch one screen instead of babysitting each agent. Every run follows the same steps, so the results are consistent, and nothing ships until I have reviewed it. I use it every day and keep adding to it.",
+    "framework": "other",
+    "techStack": [
+      "AI agents",
+      "Automation"
+    ],
+    "githubUrl": "",
+    "screenshot": "/projects/handsoff-live.png",
+    "outcomeMetric": "Runs my AI coding agents in parallel · Workflows drawn on a canvas · Live view of every session · Step in when one needs me · Tracks every task",
+    "featured": true,
+    "claudeAssisted": false,
+    "order": 6,
+    "demoNote": "The source is private. I can demo it live in a call.",
+    "gallery": [
+      {
+        "src": "/projects/handsoff-live.png",
+        "alt": "The Live page: a lineup of what is running now and next, then three agent sessions working at once, one featured large and two below, each with a live badge"
+      },
+      {
+        "src": "/projects/handsoff-workflow.png",
+        "alt": "A bug-fix workflow on the canvas: understand the issue, plan, build, run the tests, then an if/else that loops back to the build or opens a pull request and waits for my review"
+      },
+      {
+        "src": "/projects/handsoff-tasks.png",
+        "alt": "Part of my task list: status filters with counts, and three tasks with their priority, status and due date"
+      }
+    ]
   }
 ]

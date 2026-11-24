@@ -21,6 +21,9 @@ const DIMS: Record<string, [number, number]> = {
   '/projects/erica-hud-relay.png': [1280, 720],
   '/projects/erica-hud-standby.png': [1280, 720],
   '/projects/erica-hud-notification.png': [1280, 720],
+  '/projects/handsoff-live.png': [1224, 1530],
+  '/projects/handsoff-workflow.png': [1890, 720],
+  '/projects/handsoff-tasks.png': [1648, 1090],
 };
 const isVideo = (src: string) => src.endsWith('.mp4');
 // Poster frame for a video shot: same name with -poster.jpg.
@@ -38,6 +41,7 @@ export const HOST: Record<string, string> = {
   'merchantflow-ecommerce-ops': 'merchantflow.app',
   'ai-booking-agent': 'telegram · salon agent',
   'erica-voice-assistant': 'meet.google.com · erica',
+  'handsoff-agent-orchestrator': 'handsoff · live',
 };
 
 // A browser window that shows each screenshot whole at its own shape, with thumbnails to switch screens.
