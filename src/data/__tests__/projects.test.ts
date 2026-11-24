@@ -27,9 +27,12 @@ describe('projects data', () => {
     expect(p!.claudeAssisted).toBe(false);
     expect(p!.codeDiff).toBeUndefined();
     expect(p!.gallery?.[0]?.src).toBe(p!.screenshot);
-    // values only: the key `claudeAssisted` itself would match
-    const text = JSON.stringify([p!.name, p!.problem, p!.solution, p!.impact, p!.techStack, p!.outcomeMetric, p!.demoNote, p!.gallery]);
-    for (const word of [/claude/i, /anthropic/i, /tmux/i, /\bmcp\b/i, /fincom/i, /mall\s*\+|mallplus/i, /MP-\d/, /@/, /https?:/]) {
+    // every string VALUE, nested ones too (key names like `claudeAssisted` / `githubUrl` would match)
+    const values = (v: unknown): string[] =>
+      typeof v === 'string' ? [v] : v && typeof v === 'object' ? Object.values(v).flatMap(values) : [];
+    const text = values(p).join('\n');
+    const deny = [/claude/i, /anthropic/i, /openai|gpt-?\d/i, /gemini/i, /tmux/i, /\bmcp\b/i, /jira|slack|gitlab|github/i, /fincom/i, /mall\s*\+|mallplus/i, /MP-\d/, /jerome|hipolito/i, /@/, /https?:/, /\b[a-z0-9-]+\.(com|io|dev|app|asia|net|ai|org|co|me|so|xyz|tech|cloud)\b/i];
+    for (const word of deny) {
       expect(text, String(word)).not.toMatch(word);
     }
   });
